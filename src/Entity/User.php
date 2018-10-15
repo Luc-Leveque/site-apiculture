@@ -52,6 +52,11 @@ class User implements UserInterface
      */
     public $confirm_password;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $level;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -99,5 +104,17 @@ class User implements UserInterface
 
     public function getRoles(){
         return ['ROLE_USER'];
+    }
+
+    public function getLevel(): ?int
+    {
+        return $this->level;
+    }
+
+    public function setLevel(int $level): self
+    {
+        $this->level = $level;
+
+        return $this;
     }
 }
