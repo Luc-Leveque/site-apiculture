@@ -53,9 +53,21 @@ class Article
      */
     private $comments;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CommentArticle", mappedBy="article")
+     */
+    private $author;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CommentArticle", mappedBy="article", orphanRemoval=true)
+     */
+    private $commentArticles;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->author = new ArrayCollection();
+        $this->commentArticles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -148,6 +160,68 @@ class Article
             // set the owning side to null (unless already changed)
             if ($comment->getArticle() === $this) {
                 $comment->setArticle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CommentArticle[]
+     */
+    public function getAuthor(): Collection
+    {
+        return $this->author;
+    }
+
+    public function addAuthor(CommentArticle $author): self
+    {
+        if (!$this->author->contains($author)) {
+            $this->author[] = $author;
+            $author->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAuthor(CommentArticle $author): self
+    {
+        if ($this->author->contains($author)) {
+            $this->author->removeElement($author);
+            // set the owning side to null (unless already changed)
+            if ($author->getArticle() === $this) {
+                $author->setArticle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CommentArticle[]
+     */
+    public function getCommentArticles(): Collection
+    {
+        return $this->commentArticles;
+    }
+
+    public function addCommentArticle(CommentArticle $commentArticle): self
+    {
+        if (!$this->commentArticles->contains($commentArticle)) {
+            $this->commentArticles[] = $commentArticle;
+            $commentArticle->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentArticle(CommentArticle $commentArticle): self
+    {
+        if ($this->commentArticles->contains($commentArticle)) {
+            $this->commentArticles->removeElement($commentArticle);
+            // set the owning side to null (unless already changed)
+            if ($commentArticle->getArticle() === $this) {
+                $commentArticle->setArticle(null);
             }
         }
 

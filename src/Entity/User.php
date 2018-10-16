@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -56,6 +58,36 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $level;
+
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTime
+     */
+    private $passwordRequestedAt;
+
+    /**
+    * @var string
+    *
+    * @ORM\Column(type="string", length=255, nullable=true)
+    */
+    private $token;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CommentArticle", mappedBy="author", orphanRemoval=true)
+     */
+    private $commentArticles;
+
+    public function __construct()
+    {
+        $this->commentArticles = new ArrayCollection();
+    }
+
+
+
+
+
+
 
     
 
@@ -116,6 +148,78 @@ class User implements UserInterface
     public function setLevel(int $level): self
     {
         $this->level = $level;
+
+        return $this;
+    }
+
+
+
+
+
+
+
+
+    /*
+     * Get passwordRequestedAt
+     */
+    public function getPasswordRequestedAt()
+    {
+        return $this->passwordRequestedAt;
+    }
+
+    /*
+     * Set passwordRequestedAt
+     */
+    public function setPasswordRequestedAt($passwordRequestedAt)
+    {
+        $this->passwordRequestedAt = $passwordRequestedAt;
+        return $this;
+    }
+
+    /*
+     * Get token
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /*
+     * Set token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+        return $this;
+    }
+
+    /**
+     * @return Collection|CommentArticle[]
+     */
+    public function getCommentArticles(): Collection
+    {
+        return $this->commentArticles;
+    }
+
+    public function addCommentArticle(CommentArticle $commentArticle): self
+    {
+        if (!$this->commentArticles->contains($commentArticle)) {
+            $this->commentArticles[] = $commentArticle;
+            $commentArticle->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentArticle(CommentArticle $commentArticle): self
+    {
+        if ($this->commentArticles->contains($commentArticle)) {
+            $this->commentArticles->removeElement($commentArticle);
+            // set the owning side to null (unless already changed)
+            if ($commentArticle->getAuthor() === $this) {
+                $commentArticle->setAuthor(null);
+            }
+        }
 
         return $this;
     }
