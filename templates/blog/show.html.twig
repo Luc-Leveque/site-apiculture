@@ -16,18 +16,18 @@
     </artcicle>
 
     <section id="commentaires">
-        <h1>{{ article.comments | length }}
+        <h1>{{ article.commentArticles| length }}
             commentaires :</h1>
-        {% for comment in article.comments %}
+        {% for commentArticle in article.commentArticles %}
 
             <div class="comment">
                 <div class="row">
                     <div class="col-3">
-                        {{ comment.author}}
-                        (<small>{{ comment.createdAt | date('d/m/Y à H:i')}}</small>)
+                        {{ commentArticle.author.username}}
+                        (<small>{{ commentArticle.createdAt | date('d/m/Y à H:i')}}</small>)
                     </div>
                     <div class="col">
-                        {{ comment.content | raw}}
+                        {{ commentArticle.content | raw}}
                     </div>
                 </div>
             </div>
@@ -36,13 +36,12 @@
 
         {% if app.user %}
 
-            {{ form_start(commentForm) }}
-            {{ form_row(commentForm.author, {'attr': {'placeholder': "Votre nom"}}) }}
-            {{ form_row(commentForm.content, {'attr': {'placeholder': "Votre commentaire"}}) }}
+            {{ form_start(commentArticleForm) }}
+            {{ form_row(commentArticleForm.content, {'attr': {'placeholder': "Votre commentaire"}}) }}
 
             <button type="submit" class="btn btn-success">Commenter !</button>
 
-            {{ form_end(commentForm) }}
+            {{ form_end(commentArticleForm) }}
 
         {% else %}
             <h2>Vous ne pouvez pas commenter si vous n'êtes pas connecter !</h2>

@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\User;
 use App\Entity\Comment;
 use App\Form\ArticleType;
 use App\Form\CommentType;
+use App\Entity\CommentArticle;
+use App\Form\CommentArticleType;
 use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -38,6 +41,8 @@ class BlogController extends AbstractController
      * @Route("/", name="home")
      */
     public function home(){
+
+
         return $this->render('blog/home.html.twig', [
             'title' => "Bienvenue ici les amis !",
             'age' => 31
@@ -81,22 +86,28 @@ class BlogController extends AbstractController
 
 
 
+ 
 
     /**
      * @Route("/blog/{id}", name="blog_show")
      */
-    public function show(Article $article, Request $request, ObjectManager $manager){
-        $comment = new Comment();
+    public function showTest(Article $article, Request $request, ObjectManager $manager){
+        $commentArticle = new CommentArticle();
+        $commentArticle->setAuthor($this->getUser());
+        
 
-        $form = $this->createForm(CommentType::class, $comment);
+
+        $form = $this->createForm(CommentArticleType::class, $commentArticle);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $comment->setCreatedAt(new \DateTime())
+            $commentArticle->setCreatedAt(new \DateTime())
                     ->setArticle($article);
+             
+                    
 
-            $manager->persist($comment);
+            $manager->persist($commentArticle);
             $manager->flush();
 
             return $this->redirectToRoute('blog_show', ['id' => $article->getID()]);
@@ -104,10 +115,13 @@ class BlogController extends AbstractController
 
         return $this->render('blog/show.html.twig',[
             'article' => $article,
-            'commentForm' => $form->createView()
+            'commentArticleForm' => $form->createView()
         ]);
 
     }
+
+
+
 
 
    
