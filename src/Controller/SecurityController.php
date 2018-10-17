@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\EditType;
+use App\Form\TestType;
 use App\Form\RegistrationType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -24,6 +27,7 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+            
             $hash= $encoder->encodePassword($user , $user->getPassword());
 
             $user->setLevel(1);   // On met 1 par chaque nouvveau utilisateur créer
@@ -55,5 +59,7 @@ class SecurityController extends AbstractController
 
 
 
+
+    
 
 }

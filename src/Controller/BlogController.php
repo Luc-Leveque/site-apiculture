@@ -91,7 +91,7 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/{id}", name="blog_show")
      */
-    public function showTest(Article $article, Request $request, ObjectManager $manager){
+    public function show(Article $article, Request $request, ObjectManager $manager){
         $commentArticle = new CommentArticle();
         $commentArticle->setAuthor($this->getUser());
         
