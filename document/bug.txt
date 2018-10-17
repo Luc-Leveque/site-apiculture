@@ -1,3 +1,0 @@
-Problème lié à a la modification des informations d'un membre.
-
-Si celui-ci met un pseudo qui existe déja, il sera déconnecter.
