@@ -3,12 +3,6 @@
 {% block body %}
     <h1>Partie admnistration</h1>
 
-    <ul>
-    <li>Identifiant : {{app.user.id}}</li>
-    <li>Mon pseudo : {{app.user.username}}</li>
-    <li>Mon adresse mail : {{app.user.email}}</li>
-    </ul>
-    <a href="{{ path('user_edit')}}" class="btn btn-primary">Modifier ses informations</a>
-    <a href="{{ path('user_change_password')}}" class="btn btn-primary">Modifier mon mot de passe</a>
+    <a href="{{ path('show_user')}}" class="btn btn-primary">Gérer les utilisateurs</a><br />
 
 {% endblock %}

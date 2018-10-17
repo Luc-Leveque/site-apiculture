@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Gestion des utilisateurs</h1>
+    <section class="articles">
+
+        {% for user in users %}
+            <artcicles>
+                <h2>{{ user.id }}</h2>
+            </artcicles>
+        {% endfor %}
+
+    <ul>
+    <li>Identifiant : {{app.user.id}}</li>
+    <li>Mon pseudo : {{app.user.username}}</li>
+    <li>Mon adresse mail : {{app.user.email}}</li>
+    </ul>
+
+    <a href="{{ path('show_user')}}" class="btn btn-primary">Gérer les utilisateurs</a><br />
+
+{% endblock %}
