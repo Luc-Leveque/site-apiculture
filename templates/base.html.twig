@@ -3,33 +3,35 @@
     <head>
         <meta charset="UTF-8">
         <title>
-            {% block title %}Welcome!{% endblock %}
+            {% block title %}Apiculture{% endblock %}
         </title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <!--fixed-top-->
-            <a class="navbar-brand" href="{{ path('home') }} ">SymBlog</a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
+            <a class="navbar-brand" href="{{ path('home') }} "><img src="" width="30" height="30" alt="">Apiculture</a>
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('blog') }} ">Articles</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('blog_create') }} ">Créer un article</a>
+                        <a class="nav-link" href="{{ path('documentation_history') }} ">Historique</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('documentation_apiculture') }} ">Documentation</a>
+                        <a class="nav-link" href="{{ path('documentation_bees') }} ">Vie de la colonie</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('documentation_hive') }} ">Exploitation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('documentation_products') }} ">Produits de la ruche</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
                     {% if not app.user %}
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <a href="{{ path('security_login') }}" class="nav-link">
                                 Connexion
                             </a>
@@ -44,9 +46,13 @@
                 </ul>
             </div>
         </nav>
-        <div class="container-fluid d-flex h-100 flex-col">
+        <div class="container">
             {% block body %}{% endblock %}
         </div>
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        {% endblock %}
     </body>
 </html>
