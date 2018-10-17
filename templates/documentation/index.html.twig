@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Documentation{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <h3>Infos générales</h3>
+        <p>L'apiculture est une branche de l’agriculture qui consiste en l’élevage d’abeilles à miel 
+        pour exploiter les produits de la ruche, principalement du miel. 
+        L’apiculteur doit procurer au rucher un abri, des soins, et veiller sur son environnement.</p>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-info" href="{{ path('documentation_history')}}">Historique</a>
+        </div>
+        <div class="col">    
+            <a class="btn btn-info" href="{{ path('documentation_bees')}}">Abeilles</a>
+        </div>
+        <div class="col">
+            <a class="btn btn-info" href="{{ path('documentation_hive')}}">Ruche</a>
+        </div>
+        <div class="col">
+            <a class="btn btn-info" href="{{ path('documentation_products')}}">Produits de la ruche</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
