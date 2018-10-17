@@ -24,7 +24,7 @@ security:
 
             logout:
                 path: security_logout
-                target: security_login
+                target: blog
 
             # activate different ways to authenticate
 
