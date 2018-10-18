@@ -11,6 +11,15 @@
         <p>Vous ne pouvez pas créer de topic si vous n'êtes pas connecté !</p>
 
     {% endif %}
+    
+    {% for topic in topics %}
+            <artcicles>
+                <ul>
+                    <li>Identifiant : {{topic.title}}</li>
+                    <a href="{{ path('show_topic', {'id': topic.id}) }}" >Conusulter le topic</a>
+                </ul>
+            </artcicles>
+        {% endfor %}
 
     
 

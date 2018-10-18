@@ -32,9 +32,18 @@ class ForumController extends AbstractController
      */
     public function home(){
 
+        $repo = $this->getDoctrine()->getRepository(Topic::class);
 
-        return $this->render('forum/index.html.twig');
+        $topics = $repo->findAll();
+
+
+
+        return $this->render('forum/index.html.twig',[
+            'topics' => $topics
+        ]);
     }
+
+
 
     /**
      * @Route("/forum/topic/create", name="create_topic")
@@ -62,22 +71,27 @@ class ForumController extends AbstractController
         return $this->render("forum/create_topic.html.twig",[
             'formTopic' => $form->createView()
         ]);
+    }
 
-        
+    /**
+     * @Route("/forum/topic/{id}", name="show_topic")
+     */
+    public function showTopic(Topic $topic){
+        return $this->render('forum/show.html.twig',[
+            'topic' => $topic
+        ]);
     }
 
 
 
+    /**
+     * @Route("/admin", name="admin")
+     */
+    public function show(){
+        return $this->render('admin/admin.html.twig');
+}
 
- 
-
-
-
-
-
-   
-
-
+    
 
 
 }
