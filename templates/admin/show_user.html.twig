@@ -1,21 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
+{% if  app.user.level == 1 %}
+
+    <h1>ERROR: Partie reserver à l'admnistration</h1>
+
+{% elseif  app.user.level == 2 %}
+
+
+
     <h1>Gestion des utilisateurs</h1>
     <section class="articles">
 
         {% for user in users %}
             <artcicles>
-                <h2>{{ user.id }}</h2>
+                <ul>
+                    <li>Identifiant : {{user.id}}</li>
+                    <li>Pseudo: {{user.username}}</li>
+                    <li>Adresse mail: {{user.email}}</li>
+                    <a href="{{ path('delete_user', {'id': user.id}) }}" >Supprimer l'utilisateur n° {{user.id}}</a>
+                </ul><br />
             </artcicles>
         {% endfor %}
 
-    <ul>
-    <li>Identifiant : {{app.user.id}}</li>
-    <li>Mon pseudo : {{app.user.username}}</li>
-    <li>Mon adresse mail : {{app.user.email}}</li>
-    </ul>
-
     <a href="{{ path('show_user')}}" class="btn btn-primary">Gérer les utilisateurs</a><br />
+{% endif %}
 
 {% endblock %}

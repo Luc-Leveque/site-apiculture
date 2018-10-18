@@ -1,8 +1,20 @@
 {% extends 'base.html.twig' %}
 
+
+
 {% block body %}
+{% if  app.user.level == 1 %}
+    <h1>ERROR: Partie reserver à l'admnistration</h1>
+
+
+{% elseif app.user.level == 2 %}
+
     <h1>Partie admnistration</h1>
 
     <a href="{{ path('show_user')}}" class="btn btn-primary">Gérer les utilisateurs</a><br />
+{% endif %}
 
 {% endblock %}
+
+
+
