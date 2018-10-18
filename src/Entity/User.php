@@ -66,10 +66,7 @@ class User implements UserInterface
      */
     private $commentArticles;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MessageTopic", mappedBy="author", orphanRemoval=true)
-     */
-    private $messageTopics;
+    
 
     public function __construct()
     {
@@ -177,36 +174,7 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|MessageTopic[]
-     */
-    public function getMessageTopics(): Collection
-    {
-        return $this->messageTopics;
-    }
-
-    public function addMessageTopic(MessageTopic $messageTopic): self
-    {
-        if (!$this->messageTopics->contains($messageTopic)) {
-            $this->messageTopics[] = $messageTopic;
-            $messageTopic->setAuthor($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMessageTopic(MessageTopic $messageTopic): self
-    {
-        if ($this->messageTopics->contains($messageTopic)) {
-            $this->messageTopics->removeElement($messageTopic);
-            // set the owning side to null (unless already changed)
-            if ($messageTopic->getAuthor() === $this) {
-                $messageTopic->setAuthor(null);
-            }
-        }
-
-        return $this;
-    }
+    
 
    
 }
