@@ -18,7 +18,13 @@
                     <img src="{{ article.image }}" alt=""><br />
                     {{ article.content | raw }}
                 </div>
+                {% if app.user %}
+
+                    {% if  app.user.level == 2 %}
                 <a class="btn btn-info" href="{{ path('blog_edit', {'id': article.id}) }}">Modifier</a>
+
+                    {% endif %}
+                {% endif %}
 
             </artcicle>
         </div>
