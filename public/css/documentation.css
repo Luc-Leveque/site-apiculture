@@ -1,0 +1,11 @@
+div.banner {
+    background-image: url('../images/bees_rayons.jpg');
+    height: 300px;
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+}
+
+h1{
+    font-size: 300%;
+}
