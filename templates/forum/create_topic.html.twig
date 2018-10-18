@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% if app.user %}
+
+
+<h1>Création de topic</h1>
+
+{{ form_start(formTopic)}}
+
+{{ form_row(formTopic.title, {'label': 'Titre','attr':{'placeholder': 'Titre du topic..'}})}}
+<button type="submit" class="btn btn-success">Créer topic</button>
+{{ form_end(formTopic)}}
+
+{% else %}
+<p>Vous ne pouvez pas créer de topic si vous n'êtes pas connecté !</p>
+
+{% endif %}
+
+
+{% endblock %}
+

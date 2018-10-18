@@ -3,14 +3,18 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use TopicCreateType;
+use App\Entity\Topic;
 use App\Entity\Article;
 use App\Entity\Comment;
+use App\Form\TopicType;
 use App\Form\ArticleType;
 use App\Form\CommentType;
 use App\Entity\CommentArticle;
 use App\Form\CommentArticleType;
 use App\Controller\ForumController;
 use App\Repository\ArticleRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,21 +25,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ForumController extends AbstractController
 {
-    /**
-     * @Route("/blog", name="blog")
-     */
-    public function index()
-    {
-        $repo = $this->getDoctrine()->getRepository(Article::class);
-
-        $articles = $repo->findAll();
-
-
-        return $this->render('blog/index.html.twig', [
-            'controller_name' => 'BlogController',
-            'articles' => $articles
-        ]);
-    }
 
 
     /**
@@ -47,76 +36,40 @@ class ForumController extends AbstractController
         return $this->render('forum/index.html.twig');
     }
 
-
-     /**
-     * @Route("/blog/new", name="blog_create")
-     * @Route("blog/{id}/edit", name="blog_edit")
+    /**
+     * @Route("/forum/topic/create", name="create_topic")
      */
-    public function form(Article $article = null, Request $request, ObjectManager $manager){
-       // ici cette fonction permet a la fois de créer un article et de le modifier
+    public function create(Request $request, ObjectManager $manager){
+        $topic = new Topic();
+        $topic->setAuthor($this->getUser());
 
-       if(!$article){
-        $article = new Article();
-       }
 
-        $form = $this->createForm(ArticleType::class, $article);
-        
+        $form = $this->createForm(TopicType::class, $topic);
+
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            if(!$article->getId()){
-                $article->setCreateAt(new \DateTime());
-            }
-            // si article existe pas (donc pas de id on met une date)
-            
+            $topic = $form->getData();
 
-            $manager->persist($article);
+            $topic->setCreatedAt(new \DateTime());
+
+            $manager->persist($topic);
             $manager->flush();
 
-            return $this->redirectToRoute('blog_show', ['id' => $article->getId()]);
+            return $this->redirectToRoute('forum');
         }
 
-        return $this->render('blog/create.html.twig', [
-            'formArticle' => $form->createView(),
-            'editMode' => $article->getId() !== null
+        return $this->render("forum/create_topic.html.twig",[
+            'formTopic' => $form->createView()
         ]);
+
+        
     }
+
 
 
 
  
-
-    /**
-     * @Route("/blog/{id}", name="blog_show")
-     */
-    public function show(Article $article, Request $request, ObjectManager $manager){
-        $commentArticle = new CommentArticle();
-        $commentArticle->setAuthor($this->getUser());
-        
-
-
-        $form = $this->createForm(CommentArticleType::class, $commentArticle);
-
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()){
-            $commentArticle->setCreatedAt(new \DateTime())
-                    ->setArticle($article);
-             
-                    
-
-            $manager->persist($commentArticle);
-            $manager->flush();
-
-            return $this->redirectToRoute('blog_show', ['id' => $article->getID()]);
-        }
-
-        return $this->render('blog/show.html.twig',[
-            'article' => $article,
-            'commentArticleForm' => $form->createView()
-        ]);
-
-    }
 
 
 
