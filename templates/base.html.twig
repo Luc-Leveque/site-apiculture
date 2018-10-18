@@ -66,6 +66,29 @@
         <div class="container">
             {% block body %}{% endblock %}
         </div>
+
+        <div>
+        <nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="  ">Conditions d'utilisation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="  ">Mentions légale</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="  ">Nous contacter</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav,  flex-column m-0">
+                <p class="text-black-50 m-0">Nous rejoindre :</p>
+                <a class="navbar-brand, m-0" href="https://fr-fr.facebook.com/apiculture.net/" target="_blank"><img src="{{ asset('images/logo-fb.png') }}" width="30" height="30" alt="page facebook"></a>
+                <a class="navbar-brand, m-0" href="https://www.instagram.com/secretsdemiel/" target="_blank"><img src="{{ asset('images/logo-insta.png') }}" width="30" height="30" alt="page instagram"></a>
+                <a class="navbar-brand, m-0" href="https://twitter.com/unafapiculture?lang=fr " target="_blank"><img src="{{ asset('images/logo-twitter.jpg') }}" width="30" height="30" alt="page twitter"></a>
+            </ul>
+        </nav>
+        </div>
+
         {% block javascripts %}
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
