@@ -4,6 +4,12 @@
 
 {% block body %}
 
+{% if  app.user.level == 1 %}
+
+    <h1>ERROR: Partie reserver à l'admnistration</h1>
+
+{% elseif  app.user.level == 2 %}
+
     {% if editMode %}
         <h1>Modifcation d'un article !</h1>
     {% else %}
@@ -30,5 +36,6 @@
     </button>
 
     {{ form_end(formArticle) }}
+{% endif %}
 
 {% endblock %}
