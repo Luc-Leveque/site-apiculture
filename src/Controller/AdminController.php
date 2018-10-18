@@ -54,7 +54,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("admin/show_comment_article", name="show_user")
+     * @Route("admin/show_comment_article", name="show_comment")
      */
     public function showCommentArticle(){
         $repo = $this->getDoctrine()->getRepository(CommentArticle::class);
@@ -63,8 +63,20 @@ class AdminController extends AbstractController
 
         return $this->render('admin/show_comment_article.html.twig',[
             'controller_name' => 'AdminController',
-            'users' => $users
+            'comments_arts' => $users
         ]);
+    }
+
+
+    /**
+     * @Route("/admin/delete/comment/{id}" , name="delete_comment")
+     */
+    public function deleteComment(CommentArticle $comment, EntityManagerInterface $em) {
+        $em->remove($comment);
+        $em->flush();
+
+        return $this->redirectToRoute('show_comment');
+
     }
 
 

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% if  app.user.level == 1 %}
+
+    <h1>ERROR: Partie reserver à l'admnistration</h1>
+
+{% elseif  app.user.level == 2 %}
+
+
+
+    <h1>Gestion des commentaires</h1>
+    <section class="articles">
+
+        {% for comment in comments_arts %}
+            <artcicles>
+                <ul>
+                    <li>Id du commentaire : {{comment.id}}</li>
+                    <li>Ecrit par: {{comment.author.username}}</li>
+                    <li>Rattaché à l'article : {{comment.article.id}}</li>
+                    <li>A la date du : {{ comment.createdAt | date('d/m/Y à H:i')}}</li>
+                    <li>{{ comment.content | raw}}</li>
+                    <a href="{{ path('delete_comment', {'id': comment.id}) }}" >Supprimer le commentaire n° {{comment.id}}</a>
+                </ul><br />
+            </artcicles>
+        {% endfor %}
+{% endif %}
+
+{% endblock %}
