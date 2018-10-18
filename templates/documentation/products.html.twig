@@ -3,11 +3,11 @@
 {% block title %}Produits de la ruche{% endblock %}
 
 {% block body %}
-<div class="col">
-<div class="row">
+<div class="col justify-content-around">
+<div class="row justify-content-around">
     {% for article in articles %}
     <div class="col justify-content-between">
-        <div class="row">
+        <div class="row justify-content-around">
             <artcicle>
                 <h2>{{ article.title }}</h2>
                 <div class="metadata">Ecrit le
@@ -24,9 +24,9 @@
                 <a class="btn btn-info" href="{{ path('blog_edit', {'id': article.id}) }}">Modifier</a>
             </artcicle>
         </div>
-        <div class="row">
-            <h1>{{ article.commentArticles| length }}
-                commentaires :</h1>
+        <div class="row justify-content-around">
+            <p>{{ article.commentArticles| length }}
+                commentaires :</p>
             {% for commentArticle in article.commentArticles %}
 
                 <div class="comment">
@@ -48,16 +48,18 @@
                 <button type="submit" class="btn btn-success">Commenter !</button>
                 {{ form_end(commentArticleForm) }}
             {% else %}
-                <div class="row">
-                <h2>Vous ne pouvez pas commenter si vous n'êtes pas connecter !</h2>
-                <a href="{{ path('security_login')}}" class="btn btn-primary">Connexion</a>
+                <div class="row justify-content-around">
+                    <p>Vous ne pouvez pas commenter si vous n'êtes pas connecté</p>
                 </div>
             {% endif %}
         </div>
     </div>
     {% endfor %}
     </div>
-    <div class="row">
+    <div class="row justify-content-start">
+        <a href="{{ path('security_login')}}" class="btn btn-primary">Connexion</a>
+    </div>
+     <div class="row justify-content-start">
         <a class="btn btn-info" href="{{ path('documentation_apiculture')}}">Retour</a>
     </div>
 </div>

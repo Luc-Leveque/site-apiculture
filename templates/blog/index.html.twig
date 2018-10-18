@@ -1,10 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello
-    {{ controller_name }}!{% endblock %}
+{% block title %}Actualités{% endblock %}
 
 {% block body %}
-
+    <a class="nav-link" href="{{ path('blog_create') }} ">Créer un article</a>
     <section class="articles">
 
         {% for article in articles %}
@@ -12,7 +11,7 @@
                 <h2>{{ article.title }}</h2>
                 <div class="metadata">Ecrit le {{ article.createAt | date('d/m/Y') }} à {{ article.createAt | date('H:i') }} dans la catégorie Politique</div>
                 <div class="content">
-                    <img src="{{ article.image }}" alt="">
+                    <img src="{{ article.image }}" alt=""><br />
                     {{ article.content | raw }}
                      <a href="{{ path('blog_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
                 </div>
