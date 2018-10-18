@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\EditType;
 use App\Form\TestType;
+use App\Entity\Article;
 use App\Entity\CommentArticle;
 use App\Form\RegistrationType;
 use App\Form\ChangePasswordType;
@@ -59,11 +60,11 @@ class AdminController extends AbstractController
     public function showCommentArticle(){
         $repo = $this->getDoctrine()->getRepository(CommentArticle::class);
 
-        $users = $repo->findAll();
+        $comments = $repo->findAll();
 
         return $this->render('admin/show_comment_article.html.twig',[
             'controller_name' => 'AdminController',
-            'comments_arts' => $users
+            'comments_arts' => $comments
         ]);
     }
 
@@ -76,6 +77,33 @@ class AdminController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute('show_comment');
+
+    }
+
+
+    /**
+     * @Route("/admin/show_article", name="show_article")
+     */
+    public function showArticle(){
+
+        $repo = $this->getDoctrine()->getRepository(Article::class);
+
+        $articles = $repo->findAll();
+
+        return $this->render('admin/show_article.html.twig',[
+            'controller_name' => 'AdminController',
+            'articles' => $articles
+        ]);
+    }
+
+    /**
+     * @Route("/admin/delete/article/{id}" , name="delete_article")
+     */
+    public function deleteArticle(Article $article, EntityManagerInterface $em) {
+        $em->remove($article);
+        $em->flush();
+
+        return $this->redirectToRoute('show_article');
 
     }
 
