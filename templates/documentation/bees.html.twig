@@ -1,3 +1,18 @@
-{% extends 'blog/show.html.twig' %}
+{% extends 'documentation/show.html.twig' %}
 
 {% block title %}Abeilles{% endblock %}
+
+{% block body %}
+
+<div class="col-sm">
+    <div class="banner row justify-content-center">
+        <h1 class="align-self-center">Vie de la colonie</h1>
+    </div>
+    <div class="row justify-content-center">
+    <p></p>
+    </div>
+</div>
+
+{{ parent() }}
+
+{% endblock %}

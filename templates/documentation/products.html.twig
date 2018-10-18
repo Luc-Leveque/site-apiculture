@@ -1,66 +1,24 @@
-{% extends 'base.html.twig' %}
+{% extends 'documentation/show.html.twig' %}
 
 {% block title %}Produits de la ruche{% endblock %}
 
 {% block body %}
-<div class="col justify-content-around">
-<div class="row justify-content-around">
+
+    <div class="col-sm">
+        <div class="banner row justify-content-center">
+            <h1 class="align-self-center">Produits de la ruche</h1>
+        </div>
+        <div class="row justify-content-center">
+        <p></p>
+        </div>
+    </div>
+    
     {% for article in articles %}
-    <div class="col justify-content-between">
-        <div class="row justify-content-around">
-            <artcicle>
-                <h2>{{ article.title }}</h2>
-                <div class="metadata">Ecrit le
-                    {{ article.createAt | date('d/m/Y') }}
-                    à
-                    {{ article.createAt | date('H:i') }}
-                    dans la catégorie
-                    {{ article.category.title}}
-                </div>
-                <div class="content">
-                    <img src="{{ article.image }}" alt=""><br />
-                    {{ article.content | raw }}
-                </div>
-                <a class="btn btn-info" href="{{ path('blog_edit', {'id': article.id}) }}">Modifier</a>
-            </artcicle>
-        </div>
-        <div class="row justify-content-around">
-            <p>{{ article.commentArticles| length }}
-                commentaires :</p>
-            {% for commentArticle in article.commentArticles %}
-
-                <div class="comment">
-                    <div class="row">
-                        <div class="col-3">
-                            {{ commentArticle.author.username}}
-                            (<small>{{ commentArticle.createdAt | date('d/m/Y à H:i')}}</small>)
-                        </div>
-                        <div class="col">
-                            {{ commentArticle.content | raw}}
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-
-            {% if app.user %}
-                {{ form_start(commentArticleForm) }}
-                {{ form_row(commentArticleForm.content, {'attr': {'placeholder': "Votre commentaire"}}) }}
-                <button type="submit" class="btn btn-success">Commenter !</button>
-                {{ form_end(commentArticleForm) }}
-            {% else %}
-                <div class="row justify-content-around">
-                    <p>Vous ne pouvez pas commenter si vous n'êtes pas connecté</p>
-                </div>
-            {% endif %}
-        </div>
-    </div>
+        {{ parent() }}
     {% endfor %}
-    </div>
-    <div class="row justify-content-start">
-        <a href="{{ path('security_login')}}" class="btn btn-primary">Connexion</a>
-    </div>
+    
+    {% block return_button %}{% endblock %}
      <div class="row justify-content-start">
-        <a class="btn btn-info" href="{{ path('documentation_apiculture')}}">Retour</a>
+        <a class="btn btn-warning" href="{{ path('documentation_apiculture')}}">Retour</a>
     </div>
-</div>
 {% endblock %}
