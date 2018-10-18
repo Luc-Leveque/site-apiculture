@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello
+    {{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+    <section class="topics">
+
+        {% for topic in topics %}
+            <topics>
+                <h2>{{ topic.topic_nom }}</h2>
+                <div class="metadata">Ecrit le {{ topic.messageTopics | date('d/m/Y') }} à {{ topic.createAt | date('H:i') }} dans la catégorie Politique</div>
+                <div class="content">
+                     <a href="{{ path('forum_show', {'id': topic.id}) }}" class="btn btn-primary">Lire la suite</a>
+                </div>
+            </topics>
+        {% endfor %}
+
+    </section>
+
+{% endblock %}

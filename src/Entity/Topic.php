@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,6 +30,16 @@ class Topic
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MessageTopic", mappedBy="topic", orphanRemoval=true)
+     */
+    private $messageTopics;
+
+    public function __construct()
+    {
+        $this->messageTopics = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,6 +87,37 @@ class Topic
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MessageTopic[]
+     */
+    public function getMessageTopics(): Collection
+    {
+        return $this->messageTopics;
+    }
+
+    public function addMessageTopic(MessageTopic $messageTopic): self
+    {
+        if (!$this->messageTopics->contains($messageTopic)) {
+            $this->messageTopics[] = $messageTopic;
+            $messageTopic->setTopic($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessageTopic(MessageTopic $messageTopic): self
+    {
+        if ($this->messageTopics->contains($messageTopic)) {
+            $this->messageTopics->removeElement($messageTopic);
+            // set the owning side to null (unless already changed)
+            if ($messageTopic->getTopic() === $this) {
+                $messageTopic->setTopic(null);
+            }
+        }
 
         return $this;
     }

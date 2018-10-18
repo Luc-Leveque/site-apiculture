@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formTopic 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+    <h1>Création d'un article !</h1>
+
+    {{ form_start(formTopic) }}
+
+    {{ form_row(formTopic.topic_nom, {'attr': {'placeholder': "Titre du topic"}}
+    )}}
+    {{ form_row(formTopic.category)}}
+
+    <button type="submit" class="btn btn-success">
+            Ajouter l'article
+    </button>
+
+    {{ form_end(formTopic) }}
+
+{% endblock %}
