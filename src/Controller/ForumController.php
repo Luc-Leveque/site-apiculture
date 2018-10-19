@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Entity\User;
 use TopicCreateType;
 use App\Entity\Topic;
+use App\Form\PostType;
 use App\Entity\Article;
 use App\Entity\Comment;
 use App\Form\TopicType;
@@ -76,20 +78,33 @@ class ForumController extends AbstractController
     /**
      * @Route("/forum/topic/{id}", name="show_topic")
      */
-    public function showTopic(Topic $topic){
+    public function showTopic(Topic $topic, Request $request, ObjectManager $manager){
+        $post = new Post();
+        $post->setAuthor($this->getUser());
+
+        $form = $this->createForm(PostType::class, $post);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $post->setCreatedAt(new \DateTime())
+                ->setTopics($topic);
+
+            $manager->persist($post);
+            $manager->flush();
+
+            return $this->redirectToRoute('show_topic', ['id' => $topic->getId()]);
+
+        }
+
         return $this->render('forum/show.html.twig',[
-            'topic' => $topic
+            'topic' => $topic,
+            'formPost' => $form->createView()
         ]);
     }
 
 
 
-    /**
-     * @Route("/admin", name="admin")
-     */
-    public function show(){
-        return $this->render('admin/admin.html.twig');
-}
 
     
 

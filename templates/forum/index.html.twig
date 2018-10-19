@@ -15,8 +15,7 @@
     {% for topic in topics %}
             <artcicles>
                 <ul>
-                    <li>Identifiant : {{topic.title}}</li>
-                    <a href="{{ path('show_topic', {'id': topic.id}) }}" >Conusulter le topic</a>
+                    <a href="{{ path('show_topic', {'id': topic.id}) }}" >{{topic.title}}</a>
                 </ul>
             </artcicles>
         {% endfor %}
