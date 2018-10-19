@@ -1,13 +1,31 @@
+@font-face {
+	font-family: "youthTouch";
+    src: url('../fonts/Youth-Touch.ttf');
+}
+
+@font-face {
+	font-family: "beesBurts";
+    src: url('../fonts/Bees-Burts.ttf');
+}
+
+@font-face {
+	font-family: "beeRidge";
+    src: url('../fonts/BeeRidgeDemo.ttf');
+}
+
 .navbar{
-    font-family: "beeRidge", lucida sans unicode,lucida grande,sans-serif;
-    font-size: 150%;    
+    font-family: "beeRidge", lucida sans unicode,lucida grande,sans-serif;    
+}
+
+.navbarTop{
+    font-size: 140%;    
 }
 
 body {
     background-image: url('../images/background.jpg');
     background-color: transparent;
     background-repeat: repeat;
-    padding-top: 58px;
-    padding-bottom: 75px;
+    padding-top: 65px;
+    padding-bottom: 95px;
 
 }
