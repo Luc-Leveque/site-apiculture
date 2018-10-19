@@ -1,14 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Mes informations personnelles</h1>
+    <div class="row justify-content-md-center">
+	    <div>
 
-    <ul>
-    <li>Identifiant : {{app.user.id}}</li>
-    <li>Mon pseudo : {{app.user.username}}</li>
-    <li>Mon adresse mail : {{app.user.email}}</li>
-    </ul>
-    <a href="{{ path('user_edit')}}" class="btn btn-primary">Modifier ses informations</a>
-    <a href="{{ path('user_change_password')}}" class="btn btn-primary">Modifier mon mot de passe</a>
-
+	    	<h1>Mes informations personnelles</h1>
+	    
+	    	
+			    <ul class="list-group my-3">
+				    <li class="list-group-item">Identifiant : {{app.user.id}}</li>
+				    <li class="list-group-item">Mon pseudo : {{app.user.username}}</li>
+				    <li class="list-group-item">Mon adresse mail : {{app.user.email}}</li>
+			    </ul>
+		<div class="d-flex justify-content-around">
+			    <a href="{{ path('user_edit')}}" class="btn btn-primary, bg-warning text-dark">Modifier ses informations</a>
+			    <a href="{{ path('user_change_password')}}" class="btn btn-primary, bg-warning text-dark">Modifier mon mot de passe</a>
+	    
+	    	</div>
+	    </div>
+	</div>
 {% endblock %}
