@@ -18,17 +18,31 @@
            <span> {{ article.content }}</span>
         </div>
         <div class="col justify-content-end">
-            <img id="articleImage"class="img-responsive rounded" src="{{ article.image }}" alt="bee colony" >
+            <img id="articleImage"class="img-responsive rounded" src="{{ article.image }}" alt="{{ article.title }}" >
         </div>
     </div>
     <div class="row justify-content-center">
-    <p></p>
+        <p></p>
     </div>
-    {% block return_button %}
-    <div class="row justify-content-center">
-        <a class="btn btn-warning" href="{{ path('documentation_apiculture')}}">Retour</a>
-        <a class="btn btn-warning" href="{{ path('blog_edit', {'id': article.id} )}}">Modifier</a>
 
+    {% if app.user %}
+        {% if  app.user.level == 2 %}
+        <div class="row justify-content-center">
+            <a class="btn btn-warning" href="{{ path('blog_edit', {'id': article.id} )}}">Modifier</a>
+        </div>
+        {% endif %}
+    {% endif %}
+
+    <div class="row justify-content-center">
+        <p></p>
+    </div>
+    <div class="row justify-content-center">
+        <p></p>
+    </div>
+
+    {% block return_button %}
+    <div class="row justify-content-start">
+        <a class="btn btn-warning" href="{{ path('documentation_apiculture')}}">Retour</a>
     </div>
     {% endblock %}
 </div>

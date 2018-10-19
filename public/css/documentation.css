@@ -1,5 +1,5 @@
 .top-image{
-    background-color: #a78405;
+    background-color: transparent;
     position: relative;
     z-index: 400;
     top: 0;
@@ -18,24 +18,32 @@
     top: 0;
     display: block;
     height: 100%;
-    width: 100%;
+    width: 95%;
+    min-height: 200px;
+    min-width: 100px;
     margin: 0 auto;
     padding: 0;
     text-align: center;
 }
 
-h2{
-    color: #ffbe00;
+@font-face {
+	font-family: "youthTouch";
+    src: url('../fonts/Youth-Touch.ttf');
 }
 
 @font-face {
-	font-family: "youthTouch";
-	src: url('../fonts/Youth-Touch.ttf');
+	font-family: "beesBurts";
+    src: url('../fonts/Bees-Burts.ttf');
+}
+
+@font-face {
+	font-family: "beeRidge";
+    src: url('../fonts/BeeRidgeDemo.ttf');
 }
 
 
 h1.docTitle{
-    font-size: 300%;
+    font-size: 800%;    
     position: absolute;
     z-index: 500;
     top: 0;
@@ -45,6 +53,11 @@ h1.docTitle{
     width: 100%;
     text-align: center;
     font-family: "youthTouch", lucida sans unicode,lucida grande,sans-serif;
+}
+
+h2{
+    color: #ffbe00;
+    font-family: "beeRidge", lucida sans unicode,lucida grande,sans-serif;
 }
 
 #articleImage{

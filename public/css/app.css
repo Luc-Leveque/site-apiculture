@@ -1,3 +1,8 @@
+.navbar{
+    font-family: "beeRidge", lucida sans unicode,lucida grande,sans-serif;
+    font-size: 150%;    
+}
+
 body {
     background-image: url('../images/background.jpg');
     background-color: transparent;

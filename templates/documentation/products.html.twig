@@ -6,7 +6,7 @@
 
     <div class="col-sm">
         <div class="top-image row justify-content-center">
-            <img class="banner img-responsive" src="{{ asset('images/banner.jpg') }}" alt="banner" width="800">
+            <img class="banner img-fluid" src="{{ asset('images/banner.jpg') }}" alt="banner" width="800">
             <h1 class="docTitle align-self-center">Produits de la ruche</h1>
         </div>
         <div class="row justify-content-center">
@@ -16,10 +16,6 @@
     
     {% for article in articles %}
         {{ parent() }}
-
-        
-        <a class="btn btn-warning" href="{{ path('blog_edit', {'id': article.id} )}}">Modifier</a>
-
     {% endfor %}
     
     {% block return_button %}{% endblock %}
