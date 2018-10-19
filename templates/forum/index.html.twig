@@ -16,7 +16,13 @@
             <artcicles>
                 <ul>
                     <a href="{{ path('show_topic', {'id': topic.id}) }}" >{{topic.title}}</a><br />
-                    <a href="{{ path('delete_topic', {'id': topic.id}) }}" >Supprimer ce topic</a>
+                    {% if app.user %}
+                        {% if app.user.level == 2  %}
+                        <a href="{{ path('delete_topic', {'id': topic.id}) }}" >Supprimer ce topic</a>
+                        {% elseif app.user.id == topic.author.id %}
+                        <a href="{{ path('delete_topic', {'id': topic.id}) }}" >Supprimer mon topic</a>
+                        {% endif %}
+                    {% endif %}
                 </ul>
             </artcicles>
         {% endfor %}

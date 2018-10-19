@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% if  app.user.level == 1 %}
+
+    <h1>ERROR: Partie reserver à l'admnistration</h1>
+
+{% elseif  app.user.level == 2 %}
+
+
+
+    <h1>Gestion des topics</h1>
+    <section class="articles">
+
+        {% for topic in topics %}
+            <artcicles>
+                <ul>
+                    <li>Identifiant : {{topic.id}}</li>
+                    <li>Nom: {{topic.title}}</li>
+                    <li>Créer par: {{topic.author.username}} le {{ topic.createdAt | date('d/m/Y') }} à {{ topic.createdAt | date('H:i') }}</li>
+                    <li>Comporte {{ topic.posts| length }} message(s)</li>  
+                    <a href="{{ path('admin_delete_topic', {'id': topic.id}) }}" >Supprimer ce topic {{topic.id}}</a>
+                </ul><br />
+            </artcicles>
+        {% endfor %}
+{% endif %}
+
+{% endblock %}

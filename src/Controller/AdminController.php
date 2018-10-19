@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Topic;
 use App\Form\EditType;
 use App\Form\TestType;
 use App\Entity\Article;
@@ -105,6 +106,31 @@ class AdminController extends AbstractController
 
         return $this->redirectToRoute('show_article');
 
+    }
+
+     /**
+     * @Route("/admin/show_topic", name="admin_show_topic")
+     */
+    public function showTopic(){
+
+        $repo = $this->getDoctrine()->getRepository(Topic::class);
+
+        $topics = $repo->findAll();
+
+        return $this->render('admin/show_topics.html.twig',[
+            'controller_name' => 'AdminController',
+            'topics' => $topics
+        ]);
+    }
+
+    /**
+     * @Route("admin/delete/topic/{id}", name="admin_delete_topic")
+     */
+    public function deleteTopicAdmin(Topic $topic, EntityManagerInterface $em){
+        $em->remove($topic);
+        $em->flush();
+
+        return $this->redirectToRoute('admin_show_topic');
     }
 
 
