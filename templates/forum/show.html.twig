@@ -39,6 +39,7 @@
                         {% if app.user.level == 2  %}
                         <a href="{{ path('delete_post', {'id': post.id}) }}" >Supprimer ce post</a>
                         {% elseif app.user.id == post.author.id %}
+                        <a href="{{ path('edit_post', {'id': post.id}) }}" >Modifer mon post</a><br />
                         <a href="{{ path('delete_post', {'id': post.id}) }}" >Supprimer mon post</a>
                         {% endif %}
                     {% endif %}

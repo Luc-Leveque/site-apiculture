@@ -12,6 +12,8 @@ use App\Entity\Comment;
 use App\Form\TopicType;
 use App\Form\ArticleType;
 use App\Form\CommentType;
+use App\Form\EditPostType;
+use App\Form\PostEditType;
 use App\Entity\CommentArticle;
 use App\Form\CommentArticleType;
 use App\Controller\ForumController;
@@ -108,8 +110,11 @@ class ForumController extends AbstractController
      * @Route("forum/delete/topic/{id}", name="delete_topic")
      */
     public function deleteTopic(Topic $topic, EntityManagerInterface $em){
+
+        if($this->getUser() != null){
         $em->remove($topic);
         $em->flush();
+        }
 
         return $this->redirectToRoute('forum');
     }
@@ -119,13 +124,48 @@ class ForumController extends AbstractController
      */
     public function deletePost(Post $post, EntityManagerInterface $em){
 
-        $em->remove($post);
-        $em->flush();
+        if($this->getUser() != null){
+            $em->remove($post);
+            $em->flush();
+        }
+        
 
-        return $this->redirectToRoute('forum');
+        return $this->redirectToRoute('forum');    
+    }
+
+    /**
+     * @Route("forum/edit_post/{id}", name="edit_post")
+     */
+    public function editPost(Post $post, Request $request, EntityManagerInterface $em){
+        if($this->getUser() != null){
+        $form = $this->createForm(PostEditType::class, $post);
+
+        $form->handleRequest($request);
 
         
+
+        if($form->isSubmitted() && $form->isValid()){
+            
+            $post = $form->getData();
+
+            $em->flush();
+
+            return $this->redirectToRoute('forum');
+        }
+
+        return $this->render("forum/edit.html.twig", [
+            'editForm' => $form->createView()
+        ]);
+        }
+        else{
+            return $this->redirectToRoute('forum'); 
+        }
+        
+
     }
+
+
+    
 
 
 

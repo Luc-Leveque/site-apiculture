@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <h1>Modification du post</h1>
+    {{ form_start(editForm) }}
+            {{ form_row(editForm.content, {'attr': {'placeholder': "Votre post"}}) }}
+
+            <button type="submit" class="btn btn-success">Modifier !</button>
+
+            {{ form_end(editForm) }}
+    
+
+    
+{% endblock %}
