@@ -35,7 +35,7 @@ class Topic
     private $author;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="topics")
+     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="topics", orphanRemoval=true)
      */
     private $posts;
 

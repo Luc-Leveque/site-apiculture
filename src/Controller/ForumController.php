@@ -104,6 +104,30 @@ class ForumController extends AbstractController
     }
 
 
+    /**
+     * @Route("forum/delete/topic/{id}", name="delete_topic")
+     */
+    public function deleteTopic(Topic $topic, EntityManagerInterface $em){
+        $em->remove($topic);
+        $em->flush();
+
+        return $this->redirectToRoute('forum');
+    }
+
+    /**
+     * @Route("forum/delete/post/{id}", name="delete_post")
+     */
+    public function deletePost(Post $post, EntityManagerInterface $em){
+
+        $em->remove($post);
+        $em->flush();
+
+        return $this->redirectToRoute('forum');
+
+        
+    }
+
+
 
 
     

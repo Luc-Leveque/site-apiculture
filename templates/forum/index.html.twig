@@ -15,7 +15,8 @@
     {% for topic in topics %}
             <artcicles>
                 <ul>
-                    <a href="{{ path('show_topic', {'id': topic.id}) }}" >{{topic.title}}</a>
+                    <a href="{{ path('show_topic', {'id': topic.id}) }}" >{{topic.title}}</a><br />
+                    <a href="{{ path('delete_topic', {'id': topic.id}) }}" >Supprimer ce topic</a>
                 </ul>
             </artcicles>
         {% endfor %}
