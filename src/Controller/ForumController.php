@@ -124,7 +124,7 @@ class ForumController extends AbstractController
      */
     public function deletePost(Post $post, EntityManagerInterface $em){
 
-        if($this->getUser() != null){
+        if($this->getUser() != null ){
             $em->remove($post);
             $em->flush();
         }
@@ -138,6 +138,7 @@ class ForumController extends AbstractController
      */
     public function editPost(Post $post, Request $request, EntityManagerInterface $em){
         if($this->getUser() != null){
+            $idUser = $this->getUser()->
         $form = $this->createForm(PostEditType::class, $post);
 
         $form->handleRequest($request);
