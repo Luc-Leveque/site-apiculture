@@ -16,6 +16,8 @@
     
     {% for article in articles %}
         {{ parent() }}
+
+        
         <a class="btn btn-warning" href="{{ path('blog_edit', {'id': article.id} )}}">Modifier</a>
 
     {% endfor %}

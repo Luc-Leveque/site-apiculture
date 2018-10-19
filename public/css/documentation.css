@@ -24,6 +24,16 @@
     text-align: center;
 }
 
+h2{
+    color: #ffbe00;
+}
+
+@font-face {
+	font-family: "youthTouch";
+	src: url('../fonts/Youth-Touch.ttf');
+}
+
+
 h1.docTitle{
     font-size: 300%;
     position: absolute;
@@ -34,6 +44,7 @@ h1.docTitle{
     padding: 130px 0 0 0;
     width: 100%;
     text-align: center;
+    font-family: "youthTouch", lucida sans unicode,lucida grande,sans-serif;
 }
 
 #articleImage{

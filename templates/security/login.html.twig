@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/security.css') }}" rel="stylesheet" />
+{% endblock %}
+
 {% block body %}
 <div class="container">
     <div class="row justify-content-md-center">
