@@ -2,70 +2,62 @@
 
 {% block body %}
 
-<div class="col">
-    <div class="row space-around">
-        <div class="col">
-            <artcicle>
-                <h2>{{ article.title }}</h2>
-                <div class="metadata">Ecrit le
-                    {{ article.createAt | date('d/m/Y') }}
-                    à
-                    {{ article.createAt | date('H:i') }}
-                    dans la catégorie
-                    {{ article.category.title}}
-                </div>
-                <div class="content">
-                    <img src="{{ article.image }}" alt=""><br />
-                    {{ article.content | raw }}
-                </div>
-                {% if app.user %}
-
-                    {% if  app.user.level == 2 %}
-                <a class="btn btn-info" href="{{ path('blog_edit', {'id': article.id}) }}">Modifier</a>
-
-                    {% endif %}
-                {% endif %}
-
-            </artcicle>
-        </div>
-    </div>
-    <div class="row justify-content-between align-items-center">
-        <section id="commentaires">
-        <p>{{ article.commentArticles| length }}
-            commentaires :</p>
-        {% for commentArticle in article.commentArticles %}
-
-            <div class="comment">
-                <div class="row">
-                    <div class="col-3">
-                        {{ commentArticle.author.username}}
-                        (<small>{{ commentArticle.createdAt | date('d/m/Y à H:i')}}</small>)
-                    </div>
-                    <div class="col">
-                        {{ commentArticle.content | raw}}
-                    </div>
-                </div>
+<div class="container">
+    <div>
+        <artcicle >
+            <div class="row justify-content-md-center">
+            <h2>{{ article.title }}</h2>
+            <div class="metadata">Ecrit le
+                {{ article.createAt | date('d/m/Y') }}
+                à
+                {{ article.createAt | date('H:i') }}
+                dans la catégorie
+                {{ article.category.title}}
             </div>
+            </div>
+            <div class="row justify-content-md-center">
+                <img src="{{ article.image }}" alt=""><br />
+            </div>
+            <p class="text-justify">
+                {{ article.content | raw }}
+            </p>
 
-        {% endfor %}
+            {% if app.user %}
+                {% if  app.user.level == 2 %}
+                    <a class="btn btn-info" href="{{ path('blog_edit', {'id': article.id}) }}">Modifier</a>
+                {% endif %}
+            {% endif %}
+        </artcicle>
+        <section id="commentaires">
+            <p>{{ article.commentArticles| length }}commentaires :</p>
+            {% for commentArticle in article.commentArticles %}
+                <div>
+                    <div class="d-flex justify-content-start mt-1">
+                        <div class="col-3 border rounded-left">
+                            {{ commentArticle.author.username}}<br/>
+                            <small>{{ commentArticle.createdAt | date('d/m/Y à H:i')}}</small>
+                        </div>
+                        <div class="col border border-left-0 rounded-right">
+                            {{ commentArticle.content | raw}}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
 
-        {% if app.user %}
+            {% if app.user %}
 
-            {{ form_start(commentArticleForm) }}
-            {{ form_row(commentArticleForm.content, {'attr': {'placeholder': "Votre commentaire"}}) }}
-
-            <button type="submit" class="btn btn-success">Commenter !</button>
-
-            {{ form_end(commentArticleForm) }}
-
-        {% else %}
-            <p>Vous ne pouvez pas commenter si vous n'êtes pas connecté</p>
-            <a href="{{ path('security_login')}}" class="btn btn-primary">Connexion</a>
-        {% endif %}
+                {{ form_start(commentArticleForm) }}
+                    {{ form_row(commentArticleForm.content, {'attr': {'placeholder': "Votre commentaire"}}) }}
+                    <button type="submit" class="btn bg-warning text-dark">Commenter !</button>
+                {{ form_end(commentArticleForm) }}
+            {% else %}
+                <p>Vous ne pouvez pas commenter si vous n'êtes pas connecté</p>
+                <a href="{{ path('security_login')}}" class="btn bg-warning text-dark">Connexion</a>
+            {% endif %}
         </section>
-    </div>
-    <div class="row space-around">
-        <a class="btn btn-info" href="{{ path('documentation_apiculture')}}">Retour</a>
+        <div class="d-flex justify-content-around">
+            <a class="btn bg-warning text-dark" href="{{ path('blog') }}">Retour</a>
+        </div>
     </div>
 </div>
 
