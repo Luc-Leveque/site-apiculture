@@ -14,7 +14,10 @@
     <body>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="{{ path('home') }} "><img src="{{ asset('images/bee_logo.png') }}" width="30" height="30" alt="bee"> Apiculture</a>
-            <div class="collapse navbar-collapse" id="navbarColor01">
+             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#beesNavbar" aria-controls="beesNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="beesNavbar">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('blog') }} ">Articles</a>
