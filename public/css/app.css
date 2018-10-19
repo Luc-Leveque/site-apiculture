@@ -1,5 +1,7 @@
 body {
-    background-color: lightgray;
+    background-image: url('../images/background.jpg');
+    background-color: transparent;
+    background-repeat: repeat;
     padding-top: 58px;
     padding-bottom: 75px;
 

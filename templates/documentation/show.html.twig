@@ -18,7 +18,7 @@
             {{ article.content }}
         </div>
         <div class="col justify-content-end">
-            <img class="img-fluid rounded" src="{{ article.image }}" alt="bee colony" >
+            <img id="articleImage"class="img-responsive rounded" src="{{ article.image }}" alt="bee colony" >
         </div>
     </div>
     <div class="row justify-content-center">
@@ -27,7 +27,7 @@
     {% block return_button %}
     <div class="row justify-content-center">
         <a class="btn btn-warning" href="{{ path('documentation_apiculture')}}">Retour</a>
-        <!--<a class="btn btn-warning" href="{{ path('blog_edit', {'id': article.id} )}}">Modifier</a>-->
+        <a class="btn btn-warning" href="{{ path('blog_edit', {'id': article.id} )}}">Modifier</a>
 
     </div>
     {% endblock %}

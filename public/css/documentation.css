@@ -1,11 +1,44 @@
-div.banner {
-    background-image: url('../images/bees_rayons.jpg');
-    height: 300px;
-    background-position: center;
-    background-repeat: repeat;
-    background-size: cover;
+.top-image{
+    background-color: #a78405;
+    position: relative;
+    z-index: 400;
+    top: 0;
+    display: block;
+    height: 800px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
 }
 
-h1{
-    font-size: 300%;
+.banner {
+    position: relative;
+    z-index: 400;
+    top: 0;
+    display: block;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
 }
+
+h1.docTitle{
+    font-size: 300%;
+    position: absolute;
+    z-index: 500;
+    top: 0;
+    left: 0;
+    height: 420px;
+    padding: 130px 0 0 0;
+    width: 100%;
+    text-align: center;
+}
+
+#articleImage{
+    min-height: 200px;
+    min-width: 100px;
+    max-height: 900px;
+    max-width: 700px;
+  }
