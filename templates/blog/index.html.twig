@@ -2,18 +2,28 @@
 
 {% block title %}Actualités{% endblock %}
 
+{% block stylesheets %}
+        {{ parent() }}
+        <link href="{{ asset('css/article.css') }}" rel="stylesheet" />
+{% endblock %}
+
 {% block body %}
     
-    <section class="articles">
-
+    <section class="row justify-content-center">
         {% for article in articles %}
-            <artcicles>
+            <artcicles class="w-75 row justify-content-between">
+                
+                <div>
                 <h2>{{ article.title }}</h2>
                 <div class="metadata">Ecrit le {{ article.createAt | date('d/m/Y') }} à {{ article.createAt | date('H:i') }} dans la catégorie Politique</div>
+               
+
+               
+                    <img src="{{ article.image }}"  width="300px" alt=""><br />
+                 </div>
                 <div class="content">
-                    <img src="{{ article.image }}" alt=""><br />
                     {{ article.content | raw }}
-                     <a href="{{ path('blog_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
+                     <a href="{{ path('blog_show', {'id': article.id}) }}" class="btn bg-warning text-dark">Lire la suite</a>
                 </div>
             </artcicles>
         {% endfor %}
