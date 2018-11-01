@@ -15,14 +15,14 @@
                 
                 <div>
                 <h2>{{ article.title }}</h2>
-                <div class="metadata">Ecrit le {{ article.createAt | date('d/m/Y') }} à {{ article.createAt | date('H:i') }} dans la catégorie Politique</div>
+                <div class="metadata">Ecrit le {{ article.createAt | date('d/m/Y') }} à {{ article.createAt | date('H:i') }} dans la catégorie {{ article.category.title }}</div>
                
 
                
                     <img src="{{ article.image }}"  width="300px" alt=""><br />
                  </div>
                 <div class="content">
-                    {{ article.content | raw }}
+                    {{ article.content | truncate(500) }}
                      <a href="{{ path('blog_show', {'id': article.id}) }}" class="btn bg-warning text-dark">Lire la suite</a>
                 </div>
             </artcicles>
