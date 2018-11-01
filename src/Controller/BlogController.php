@@ -68,6 +68,8 @@ class BlogController extends AbstractController
             }
             // si article existe pas (donc pas de id on met une date)
             
+            $article->setCreateAt(new \DateTime());
+            
 
             $manager->persist($article);
             $manager->flush();
