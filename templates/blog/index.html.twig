@@ -22,7 +22,7 @@
                     <img src="{{ article.image }}"  width="300px" alt=""><br />
                  </div>
                 <div class="content">
-                    {{ article.content | truncate(500) }}
+                    {{ article.content |  truncate(400) }}
                      <a href="{{ path('blog_show', {'id': article.id}) }}" class="btn bg-warning text-dark">Lire la suite</a>
                 </div>
             </artcicles>
