@@ -3,3 +3,7 @@ h1{
     font-family: "youthTouch", lucida sans unicode,lucida grande,sans-serif;
     font-size: 600%;    
 }
+
+form{
+    width: 70%;
+}
