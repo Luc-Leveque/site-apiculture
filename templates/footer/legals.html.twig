@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Mentions légales{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/pagesfooter.css') }}" rel="stylesheet" />
+{% endblock %}
 
 {% block body %}
     <h1>Mentions légales</h1>
