@@ -26,7 +26,19 @@ class AdminController extends AbstractController
      * @Route("/admin", name="admin")
      */
     public function show(){
-            return $this->render('admin/admin.html.twig');
+
+         $user = $this->getUser();
+ 
+        if(isset($user)){
+            $idUser= $user->getLevel();
+ 
+            if($idUser == 2){
+ 
+                return $this->render('admin/admin.html.twig');
+            }
+            return $this->redirectToRoute('error');
+        }
+        return $this->redirectToRoute('security_login');
     }
 
     /**
@@ -36,19 +48,32 @@ class AdminController extends AbstractController
         return $this->render('admin/error.html.twig');
     }
 
+    
+
     /**
      * @Route("/admin/show_user", name="show_user")
      */
     public function showUser(){
 
-        $repo = $this->getDoctrine()->getRepository(User::class);
+        $user = $this->getUser();
+ 
+        if(isset($user)){
+            $idUser= $user->getLevel();
+ 
+            if($idUser == 2){
+ 
+                $repo = $this->getDoctrine()->getRepository(User::class);
 
-        $users = $repo->findAll();
+                 $users = $repo->findAll();
 
-        return $this->render('admin/show_user.html.twig',[
-            'controller_name' => 'AdminController',
-            'users' => $users
-        ]);
+                return $this->render('admin/show_user.html.twig',[
+                'controller_name' => 'AdminController',
+                'users' => $users
+                ]);
+            }
+            return $this->redirectToRoute('error');
+        }
+        return $this->redirectToRoute('security_login');
     }
 
     /**
@@ -145,12 +170,23 @@ class AdminController extends AbstractController
      * @Route("admin/delete/topic/{id}", name="admin_delete_topic")
      */
     public function deleteTopicAdmin(Topic $topic, EntityManagerInterface $em){
-        $em->remove($topic);
+
+        $user = $this->getUser();
+    
+        if(isset($user)){
+            $idUser= $user->getLevel();
+    
+            if($idUser == 2){
+                $em->remove($topic);
         $em->flush();
 
         return $this->redirectToRoute('admin_show_topic');
-    }
+            }
+            return $this->redirectToRoute('error');
+        }
+        return $this->redirectToRoute('security_login');
 
+    }
 
 
 
