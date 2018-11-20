@@ -29,7 +29,7 @@
 
             {% if app.user %}
                 {% if  app.user.level == 2 %}
-                    <a class="btn btn-info" href="{{ path('blog_edit', {'id': article.id}) }}">Modifier</a>
+                    <a class="btn btn-warning" href="{{ path('blog_edit', {'id': article.id}) }}">Modifier</a>
                 {% endif %}
             {% endif %}
         </artcicle>

@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet" />
+{% endblock %}
+
 {% block body %}
 
 {% if  app.user.level == 1 %}
@@ -24,5 +29,8 @@
             </artcicles>
         {% endfor %}
 {% endif %}
+
+        <a class="btn btn-warning" href="{{ path('admin')}}">Retour</a>
+
 
 {% endblock %}
