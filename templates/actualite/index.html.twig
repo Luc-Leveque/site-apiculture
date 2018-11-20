@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+{% for article in articles.channel.item %}
+            <artcicles>
+                <ul>
+                    <li>titre : {{article.title}}</li>
+                    <li>description: {{article.description}}</li>
+                    <li>Date Publication: {{article.pubDate}}</li>
+                    <li>ALink: {{article.link}}</li>
+                    {% if article.enclosure is defined %}
+                        Image: {{article.enclosure.attributes.url }}
+                    {% endif %}
+                </ul>
+            </artcicles>
+        {% endfor %}
+{% endblock %}
