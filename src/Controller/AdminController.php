@@ -30,6 +30,13 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route("/error", name="error")
+     */
+    public function showError(){
+        return $this->render('admin/error.html.twig');
+    }
+
+    /**
      * @Route("/admin/show_user", name="show_user")
      */
     public function showUser(){
@@ -98,15 +105,26 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/delete/article/{id}" , name="delete_article")
-     */
-    public function deleteArticle(Article $article, EntityManagerInterface $em) {
-        $em->remove($article);
-        $em->flush();
+    * @Route("/admin/delete/article/{id}" , name="delete_article")
+    */
+   public function deleteArticle(Article $article, EntityManagerInterface $em) {
 
-        return $this->redirectToRoute('show_article');
+    $user = $this->getUser();
 
+    if(isset($user)){
+        $idUser= $user->getLevel();
+
+        if($idUser == 2){
+            $em->remove($article);
+            $em->flush();
+
+            return $this->redirectToRoute('show_article');
+        }
+        return $this->redirectToRoute('error');
     }
+    return $this->redirectToRoute('security_login');
+
+}
 
      /**
      * @Route("/admin/show_topic", name="admin_show_topic")
