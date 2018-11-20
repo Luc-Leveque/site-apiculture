@@ -7,20 +7,23 @@
 
 
 {% block body %}
-<h1>Nous Contacter</h1>
+<h1 class="row">Nous Contacter</h1>
  <div class="row justify-content-around">
-    <form action="#">
+    <form action="{{ path('send-mail')}}" method="post">
         <div class="form-group">
-            <label for="name">Nom : </label>
-            <input type="text" class="form-control" name="name" id="name" required>
-            <label for="email">Email : </label>
+            <label for="email">Email</label>
             <input type="text" class="form-control" name="email" id="email" required>
         </div>
         <div class="form-group">
+            
+            <label for="object">Objet</label>
+            <input type="text" class="form-control" name="object" id="object" rows="3" required>
             <label for="message">Message</label>
-            <textarea class="form-control" nmae="message" id="message" rows="3" required></textarea>
+            <textarea class="form-control" name="message" id="message" rows="3" required></textarea>
         </div>
         <button class="btn bg-warning text-dark" type="submit">Valider</button>
     </form>
 </div> 
+
+
 {% endblock %}
