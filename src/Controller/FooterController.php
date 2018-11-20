@@ -11,7 +11,7 @@ class FooterController extends AbstractController
      * @Route("/mentions-legales", name="legals")
      */
     
-    public function index()
+    public function legals()
     {
 
         return $this->render('footer/legals.html.twig');
@@ -20,7 +20,7 @@ class FooterController extends AbstractController
      * @Route("/conditions-utilisations", name="terms")
      */
 
-    public function index2()
+    public function termsOfUse()
     {
         return $this->render('footer/terms-use.html.twig');
         }
@@ -28,8 +28,25 @@ class FooterController extends AbstractController
      * @Route("/contact", name="contact")
      */
 
-    public function index3()
+    public function contact()
     {
         return $this->render('footer/contact.html.twig');
-        }
+    }
+
+    /**
+     * @Route("/contact", name="send-mail")
+     */
+    public function sendMail(){
+        ini_set( 'display_errors', 1 );
+        error_reporting( E_ALL );
+
+        $from = $_POST['email']; 
+        $to = "soljsn@laposte.net"; 
+        $subject = $_POST['object'];
+        $message = $_POST['message'];
+        $headers = "From:" . $_POST['email']; 
+        mail($to,$subject,$message, $headers);
+        return $this->render('footer/contact.html.twig');
+
+    }
 }
