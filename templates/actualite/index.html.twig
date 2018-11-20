@@ -6,15 +6,16 @@
 
 {% for article in articles.channel.item %}
             <artcicles>
+                {% if article.enclosure is defined %}
+                    <img src="{{article.enclosure.attributes.url }}">
+                {% endif %}
+                <h2>{{article.title}}</h2>
                 <ul>
-                    <li>titre : {{article.title}}</li>
                     <li>description: {{article.description}}</li>
                     <li>Date Publication: {{article.pubDate}}</li>
-                    <li>ALink: {{article.link}}</li>
-                    {% if article.enclosure is defined %}
-                        Image: {{article.enclosure.attributes.url }}
-                    {% endif %}
-                </ul>
+                </ul>    
+                <a class="btn btn-warning" href="{{article.link}}">Voir plus</a><br>
+                
             </artcicles>
         {% endfor %}
 {% endblock %}
