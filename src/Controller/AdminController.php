@@ -27,7 +27,7 @@ class AdminController extends AbstractController
      */
     public function show(){
 
-         $user = $this->getUser();
+        $user = $this->getUser();
  
         if(isset($user)){
             $idUser= $user->getLevel();
@@ -80,10 +80,21 @@ class AdminController extends AbstractController
      * @Route("/admin/delete/user/{id}" , name="delete_user")
      */
     public function deleteUser(User $user, EntityManagerInterface $em) {
-        $em->remove($user);
-        $em->flush();
+        
+        $userSite = $this->getUser();
+ 
+        if(isset($userSite)){
+            $idUser= $userSite->getLevel();
+ 
+            if($idUser == 2){
+                $em->remove($user);
+                $em->flush();
 
-        return $this->redirectToRoute('show_user');
+                return $this->redirectToRoute('show_user');
+            }
+            return $this->redirectToRoute('error');
+        }
+        return $this->redirectToRoute('security_login');
 
     }
 
@@ -91,14 +102,25 @@ class AdminController extends AbstractController
      * @Route("admin/show_comment_article", name="show_comment")
      */
     public function showCommentArticle(){
-        $repo = $this->getDoctrine()->getRepository(CommentArticle::class);
 
-        $comments = $repo->findAll();
+        $user = $this->getUser();
+ 
+        if(isset($user)){
+            $idUser= $user->getLevel();
+ 
+            if($idUser == 2){
+                $repo = $this->getDoctrine()->getRepository(CommentArticle::class);
 
-        return $this->render('admin/show_comment_article.html.twig',[
-            'controller_name' => 'AdminController',
-            'comments_arts' => $comments
-        ]);
+                $comments = $repo->findAll();
+
+                return $this->render('admin/show_comment_article.html.twig',[
+                'controller_name' => 'AdminController',
+                'comments_arts' => $comments
+            ]);
+            }
+            return $this->redirectToRoute('error');
+        }
+        return $this->redirectToRoute('security_login');
     }
 
 
@@ -106,10 +128,21 @@ class AdminController extends AbstractController
      * @Route("/admin/delete/comment/{id}" , name="delete_comment")
      */
     public function deleteComment(CommentArticle $comment, EntityManagerInterface $em) {
-        $em->remove($comment);
-        $em->flush();
 
-        return $this->redirectToRoute('show_comment');
+        $user = $this->getUser();
+ 
+        if(isset($user)){
+            $idUser= $user->getLevel();
+ 
+            if($idUser == 2){
+                $em->remove($comment);
+                $em->flush();
+
+                return $this->redirectToRoute('show_comment');
+            }
+            return $this->redirectToRoute('error');
+        }
+        return $this->redirectToRoute('security_login');
 
     }
 
@@ -119,14 +152,24 @@ class AdminController extends AbstractController
      */
     public function showArticle(){
 
-        $repo = $this->getDoctrine()->getRepository(Article::class);
+        $user = $this->getUser();
+ 
+        if(isset($user)){
+            $idUser= $user->getLevel();
+ 
+            if($idUser == 2){
+                $repo = $this->getDoctrine()->getRepository(Article::class);
 
-        $articles = $repo->findAll();
+                $articles = $repo->findAll();
 
-        return $this->render('admin/show_article.html.twig',[
-            'controller_name' => 'AdminController',
-            'articles' => $articles
-        ]);
+                return $this->render('admin/show_article.html.twig',[
+                    'controller_name' => 'AdminController',
+                    'articles' => $articles
+                ]);
+            }
+            return $this->redirectToRoute('error');
+        }
+        return $this->redirectToRoute('security_login');
     }
 
     /**
@@ -155,15 +198,26 @@ class AdminController extends AbstractController
      * @Route("/admin/show_topic", name="admin_show_topic")
      */
     public function showTopic(){
+        $user = $this->getUser();
 
-        $repo = $this->getDoctrine()->getRepository(Topic::class);
+        if(isset($user)){
 
-        $topics = $repo->findAll();
+            $idUser= $user->getLevel();
 
-        return $this->render('admin/show_topics.html.twig',[
-            'controller_name' => 'AdminController',
-            'topics' => $topics
-        ]);
+            if($idUser == 2){
+
+                $repo = $this->getDoctrine()->getRepository(Topic::class);
+
+                $topics = $repo->findAll();
+
+                return $this->render('admin/show_topics.html.twig',[
+                    'controller_name' => 'AdminController',
+                    'topics' => $topics
+                ]);
+            }
+        return $this->redirectToRoute('error');
+        }
+    return $this->redirectToRoute('security_login');
     }
 
     /**
