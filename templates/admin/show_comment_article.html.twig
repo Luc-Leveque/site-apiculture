@@ -9,30 +9,30 @@
 
 {% if  app.user.level == 1 %}
 
-    <h1>ERROR: Partie reserver à l'admnistration</h1>
+ <div>
+    <h1>ERROR</h1>
+    <p>Partie réservée à l'admnistration</p>
+</div>
 
 {% elseif  app.user.level == 2 %}
 
-
-
     <h1>Gestion des commentaires</h1>
     <section class="articles">
-
         {% for comment in comments_arts %}
-            <artcicles>
+           <article>
                 <ul>
                     <li>Id du commentaire : {{comment.id}}</li>
                     <li>Ecrit par: {{comment.author.username}}</li>
                     <li>Rattaché à l'article : {{comment.article.id}}</li>
                     <li>A la date du : {{ comment.createdAt | date('d/m/Y à H:i')}}</li>
-                    <li>{{ comment.content | raw}}</li>
-                    <a href="{{ path('delete_comment', {'id': comment.id}) }}" >Supprimer le commentaire n° {{comment.id}}</a>
-                </ul><br />
-            </artcicles>
+                    <li>{{ comment.content | raw}}</li> 
+                </ul>
+                <a class="btn btn-warning" href="{{ path('delete_comment', {'id': comment.id}) }}">
+                    Supprimer le commentaire</a>
+            </article>
         {% endfor %}
-{% endif %}
-
-        <a class="btn btn-warning" href="{{ path('admin')}}">Retour</a>
-
+    </section>
+    {% endif %}
+    <a class="back btn btn-warning" href="{{ path('admin')}}">Retour</a>
 
 {% endblock %}

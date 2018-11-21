@@ -1,5 +1,46 @@
 h1{
     color: #ffbe00;
     font-family: "youthTouch", lucida sans unicode,lucida grande,sans-serif;
-    font-size: 600%;    
+    font-size: 600%; 
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.articles{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+p{
+    display: flex;
+    justify-content: center;
+    font-family: "beeRidge", lucida sans unicode,lucida grande,sans-serif;
+    align-self: center;
+    font-size: 1.5rem;
+}
+
+.articles-list{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+}
+
+article ul {
+    list-style: none;
+}
+
+.btn-warning{
+    margin: 1%;
+}
+
+.create-article{
+    margin-top: 0;
+}
+
+.back{
+    margin-left: 6em;
 }

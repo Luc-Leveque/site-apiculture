@@ -9,28 +9,29 @@
 
 {% if  app.user.level == 1 %}
 
-    <h1>ERROR: Partie reserver à l'admnistration</h1>
+     <div>
+        <h1>ERROR</h1>
+        <p>Partie réservée à l'admnistration</p>
+    </div>
 
 {% elseif  app.user.level == 2 %}
 
-
-
     <h1>Gestion des topics</h1>
     <section class="articles">
-
         {% for topic in topics %}
-            <artcicles>
+           <article>
                 <ul>
                     <li>Identifiant : {{topic.id}}</li>
                     <li>Nom: {{topic.title}}</li>
                     <li>Créer par: {{topic.author.username}} le {{ topic.createdAt | date('d/m/Y') }} à {{ topic.createdAt | date('H:i') }}</li>
-                    <li>Comporte {{ topic.posts| length }} message(s)</li>  
-                    <a href="{{ path('admin_delete_topic', {'id': topic.id}) }}" >Supprimer ce topic {{topic.id}}</a>
-                </ul><br />
-            </artcicles>
+                    <li>Comporte {{ topic.posts| length }} message(s)</li>
+                </ul>
+                <a class="btn btn-warning" href="{{ path('admin_delete_topic', {'id': topic.id}) }}">
+                    Supprimer ce topic</a>
+            </article>
         {% endfor %}
-{% endif %}
-
-        <a class="btn btn-warning" href="{{ path('admin')}}">Retour</a>
+    </section>
+    <a class="back btn btn-warning" href="{{ path('admin')}}">Retour</a>
+    {% endif %}
 
 {% endblock %}

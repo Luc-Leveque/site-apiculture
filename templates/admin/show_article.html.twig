@@ -8,31 +8,33 @@
 {% block body %}
 
 {% if  app.user.level == 1 %}
+    <div>
+        <h1>ERROR</h1>
+        <p>Partie réservée à l'admnistration</p>
+    </div>
 
-    <h1>ERROR: Partie reserver à l'admnistration</h1>
-
-{% elseif  app.user.level == 2 %}
-
-
-
+    {% elseif  app.user.level == 2 %}
     <h1>Gestion des articles</h1>
+    <a class="create-article btn btn-warning" href="{{ path('blog_create') }} ">Créer un article</a>
     <section class="articles">
-    <a class="nav-link" href="{{ path('blog_create') }} ">Créer un article</a>
-
         {% for article in articles %}
-            <artcicles>
-                <ul>
-                    <li>Identifiant : {{article.id}}</li>
-                    <li>Appartient à la catégorie : {{article.category.title}}</li>
-                    <li>Publié le: {{ article.createAt | date('d/m/Y à H:i')}}</li>
-                    <a href="{{ path('blog_edit', {'id': article.id}) }}" >Modifier l'article n° {{article.id}}</a><br />
-                    <a href="{{ path('delete_article', {'id': article.id}) }}" >Supprimer l'article n° {{article.id}}</a>
-                </ul><br />
-            </artcicles>
+            <ul class="articles-list">
+                <li>
+                    <ul>
+                        <li>Identifiant : {{article.id}}</li>
+                        <li>Appartient à la catégorie : {{article.category.title}}</li>
+                        <li>Publié le: {{ article.createAt | date('d/m/Y à H:i')}}</li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="btn btn-warning" href="{{ path('blog_edit', {'id': article.id}) }}">
+                    Modifier l'article</a>
+                    <a class="btn btn-warning" href="{{ path('delete_article', {'id': article.id}) }}">
+                    Supprimer l'article</a>
+                </li>
+            </ul>
         {% endfor %}
-{% endif %}
-
-    <a class="btn btn-warning" href="{{ path('admin')}}">Retour</a>
-
-
+    </section>
+    {% endif %}
+    <a class="back btn btn-warning" href="{{ path('admin')}}">Retour</a>
 {% endblock %}

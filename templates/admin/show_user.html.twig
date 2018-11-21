@@ -6,21 +6,26 @@
 {% endblock %}
 
 {% block body %}
+{% if  app.user.level == 1 %}
+    <div>
+        <h1>ERROR</h1>
+        <p>Partie réservée à l'admnistration</p>
+    </div>
+    {% elseif  app.user.level == 2 %}
     <h1>Gestion des utilisateurs</h1>
     <section class="articles">
-
         {% for user in users %}
-            <artcicles>
+            <article>
                 <ul>
                     <li>Identifiant : {{user.id}}</li>
                     <li>Pseudo: {{user.username}}</li>
                     <li>Adresse mail: {{user.email}}</li>
-                    <a href="{{ path('delete_user', {'id': user.id}) }}" >Supprimer l'utilisateur n° {{user.id}}</a>
-                </ul><br />
-            </artcicles>
+                    <a class="btn btn-warning" href="{{ path('delete_user', {'id': user.id}) }}" >
+                    Supprimer l'utilisateur</a>
+                </ul>
+            </article>
         {% endfor %}
-
-        <a class="btn btn-warning" href="{{ path('admin')}}">Retour</a>
-
-
+    </section>
+    {% endif %}
+    <a class="back btn btn-warning" href="{{ path('admin')}}">Retour</a>
 {% endblock %}
