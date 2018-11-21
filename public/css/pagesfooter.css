@@ -5,6 +5,23 @@ h1{
     justify-content: center;
 }
 
+
+h2 {
+	color: #ffbe00;
+    font-family: "youthTouch", lucida sans unicode,lucida grande,sans-serif;
+    font-size: 300%;   
+    justify-content: center;
+}
+
+section {
+	text-align: center;
+	padding: 0px 50px;
+}
+
+p {
+	text-align: justify;
+}
+
 form{
     width: 50%;
 }
