@@ -17,7 +17,7 @@
             {% endif %}
             <h2>{{article.title}}</h2>
             <ul>
-                <li>description: {{article.description}}</li>
+                <li>description: {{article.description|replace({'<div class="content">': " " ,'</div>':''})}}</li>
                 <li>Date Publication: {{article.pubDate}}</li>
             </ul>    
             <a class="btn btn-warning" href="{{article.link}}">Voir plus</a><br>
