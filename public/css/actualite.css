@@ -1,0 +1,32 @@
+body {
+	text-align: center;
+}
+
+h1{
+    color: #ffbe00;
+    font-family: "youthTouch", lucida sans unicode,lucida grande,sans-serif;
+    font-size: 600%;   
+    justify-content: center;
+}
+
+article {
+	width: 500px;
+}
+
+.texte {
+	height: 150px;
+	width: 500px;
+	text-align: left;
+	overflow: hidden;
+	text-overflow: "...";
+}
+
+
+.titre {
+	font-size: 1.5em;
+}
+
+.img-article {
+	width: 150px;
+	height: 150px;
+}

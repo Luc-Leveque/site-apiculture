@@ -2,20 +2,31 @@
 
 {% block title %}Actualités{% endblock %}
 
-{% block body %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/actualite.css') }}" rel="stylesheet" />
+{% endblock %}
 
-{% for article in articles.channel.item %}
-            <artcicles>
-                {% if article.enclosure is defined %}
-                    <img src="{{article.enclosure.attributes.url }}">
-                {% endif %}
-                <h2>{{article.title}}</h2>
-                <ul>
-                    <li>description: {{article.description|replace({'<div class="content">': " " ,'</div>':''})}}</li>
-                    <li>Date Publication: {{article.pubDate}}</li>
-                </ul>    
+{% block body %}
+<h1>Actualités</h1>
+
+<main class="d-flex flex-wrap justify-content-around">
+
+    {% for article in articles.channel.item %}
+        <artcicles class="d-flex flex-row bd-highlight mb-3 ">
+            {% if article.enclosure is defined %}
+                <img class="img-article" src="{{article.enclosure.attributes.url }}">
+            {% else %}
+                <img class="img-article" src="images/abeille-article.jpg">
+            {% endif %}
+            <div class="ml-3">
+                <p class="texte"> <span class="titre my-0">{{article.title}}</span><br>
+                {{article.pubDate}}<br>
+                {{article.description |replace({'<div class="content">': " " ,'</div>':''})}}
+                </p>   
                 <a class="btn btn-warning" href="{{article.link}}">Voir plus</a><br>
-                
-            </artcicles>
-        {% endfor %}
+            </div>
+        </artcicles>
+    {% endfor %}
+</main>
 {% endblock %}
