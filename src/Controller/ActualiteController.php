@@ -18,6 +18,8 @@ class ActualiteController extends AbstractController
         $contenu = curl_exec($curl);
         $xml = new \SimpleXMLElement($contenu);
 
+            //dump($xml);
+            //die();
 
 
         return $this->render('actualite/index.html.twig', [
