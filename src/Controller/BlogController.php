@@ -42,8 +42,18 @@ class BlogController extends AbstractController
      */
     public function home(){
 
+        $curl = curl_init();
+        curl_setopt($curl,CURLOPT_URL,"http://plus.lefigaro.fr/tag/apiculture/rss.xml");
+        curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
+        $contenu = curl_exec($curl);
+        $xml = new \SimpleXMLElement($contenu);
 
-        return $this->render('blog/home.html.twig');
+
+        return $this->render('blog/home.html.twig',
+            [
+                'controller_name' => 'BlogController',
+                'articles' =>$xml
+            ]);
     }
 
 
