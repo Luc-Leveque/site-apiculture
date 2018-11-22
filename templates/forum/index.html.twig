@@ -1,33 +1,38 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/forum.css') }}" rel="stylesheet" />
+{% endblock %}
+
 {% block body %}
     <h1>Bienvenue sur le forum d'apiculture</h1>
     
     {% if app.user %}
 
-            <a href="{{ path('create_topic') }}" >Créer un topic</a>
+            <a class="btn btn-warning" href="{{ path('create_topic') }}" >Créer un topic</a>
     {% else %}
 
-        <p>Vous ne pouvez pas créer de topic si vous n'êtes pas connecté !</p>
+        <p class="connect">Vous ne pouvez pas créer de topic si vous n'êtes pas connecté !</p>
 
     {% endif %}
     
+    <article class="list-topic">
+        <h2>Liste des topics</h2>
     {% for topic in topics %}
-            <artcicles>
-                <ul>
-                    <a href="{{ path('show_topic', {'id': topic.id}) }}" >{{topic.title}}</a><br />
-                    {% if app.user %}
-                        {% if app.user.level == 2  %}
-                        <a href="{{ path('delete_topic', {'id': topic.id}) }}" >Supprimer ce topic</a>
-                        {% elseif app.user.id == topic.author.id %}
-                        <a href="{{ path('delete_topic', {'id': topic.id}) }}" >Supprimer mon topic</a>
-                        {% endif %}
+        <section class="topic">
+                <a class="topic-link" href="{{ path('show_topic', {'id': topic.id}) }}">{{topic.title}}</a>
+                {% if app.user %}
+                    {% if app.user.level == 2  %}
+                       <a class="btn btn-warning" href="{{ path('delete_topic', {'id': topic.id}) }}">
+                            Supprimer ce topic</a>
+                    {% elseif app.user.id == topic.author.id %}
+                        <a class="btn btn-warning" href="{{ path('delete_topic', {'id': topic.id}) }}">
+                        Supprimer mon topic</a>
                     {% endif %}
-                </ul>
-            </artcicles>
+                {% endif %}
+        </section>
         {% endfor %}
-
-    
-
+        </article>
     
 {% endblock %}
