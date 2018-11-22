@@ -24,7 +24,7 @@
             <th>Topic</th>
             <th>Créateur</th>
             <th>Nb Messages</th>
-            <th>Dernier message</th>
+            <th>Créer le</th>
         </tr>
         {% for topic in topics %}
         <tr>
@@ -32,7 +32,7 @@
                 {{topic.title}}</a></td>
             <td><p>{{topic.author.username}}</p></td>
             <td><p><p>{{ topic.posts| length }}</p></td>
-            <td><p>ici la date du dernier message posté</p></td>
+            <td><p>{{ topic.createdAt | date('d/m/Y à H:i')}}</p></td>
             <td>
                 {% if app.user %}
                     {% if app.user.level == 2  %}
