@@ -31,7 +31,7 @@
             <td><a class="topic-link" href="{{ path('show_topic', {'id': topic.id}) }}">
                 {{topic.title}}</a></td>
             <td><p>{{topic.author.username}}</p></td>
-            <td><p>ici le nombre total de messages dans le topic</p></td>
+            <td><p><p>{{ topic.posts| length }}</p></td>
             <td><p>ici la date du dernier message posté</p></td>
             <td>
                 {% if app.user %}
