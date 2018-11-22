@@ -19,9 +19,21 @@
     
     <article class="list-topic">
         <h2>Liste des topics</h2>
-    {% for topic in topics %}
-        <section class="topic">
-                <a class="topic-link" href="{{ path('show_topic', {'id': topic.id}) }}">{{topic.title}}</a>
+    <table>
+        <tr>
+            <th>Topic</th>
+            <th>Créateur</th>
+            <th>Nb Messages</th>
+            <th>Dernier message</th>
+        </tr>
+        {% for topic in topics %}
+        <tr>
+            <td><a class="topic-link" href="{{ path('show_topic', {'id': topic.id}) }}">
+                {{topic.title}}</a></td>
+            <td><p>{{topic.author.username}}</p></td>
+            <td><p>ici le nombre total de messages dans le topic</p></td>
+            <td><p>ici la date du dernier message posté</p></td>
+            <td>
                 {% if app.user %}
                     {% if app.user.level == 2  %}
                        <a class="btn btn-warning" href="{{ path('delete_topic', {'id': topic.id}) }}">
@@ -31,8 +43,10 @@
                         Supprimer mon topic</a>
                     {% endif %}
                 {% endif %}
-        </section>
+            </td>  
+        </tr>
         {% endfor %}
-        </article>
+    </table>
+    </article>
     
 {% endblock %}
