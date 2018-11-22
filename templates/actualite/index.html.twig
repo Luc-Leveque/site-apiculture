@@ -13,21 +13,21 @@
 <main class="d-flex flex-wrap justify-content-left">
 
     {% for article in articles.channel.item %}
-        <artcicles class="d-flex flex-row bd-highlight pb-3 ">
+        <artcicles class="d-flex flex-row bd-highlight pb-3">
             {% if article.enclosure is defined %}
                 <img class="img-article" src="{{article.enclosure.attributes.url }}">
             {% else %}
                 <img class="img-article" src="images/abeille-article.jpg">
             {% endif %}
-            <div class="article pl-3 pb-5">
-            <div class="texte">
-                <p> <span class="titre my-0">{{article.title}}</span><br>
-                {{article.pubDate}}</p>  
-                <p class="description">
-                {{article.description |replace({'<div class="content">': " " ,'</div>':''})}}
-                </p>
-            </div>
-            <a class="btn btn-warning" href="{{article.link}}">Voir plus</a>
+            <div class="autre article pl-3 pb-5">
+                <div class="texte">
+                    <p> <span class="titre my-0">{{article.title}}</span><br>
+                    {{article.pubDate}}</p>  
+                    <p class="description">
+                    {{article.description |replace({'<div class="content">': " " ,'</div>':''})}}
+                    </p>
+                </div>
+                <a class="btn btn-warning" href="{{article.link}}" target="_blank">Voir plus</a>
             </div>
             
         </artcicles>

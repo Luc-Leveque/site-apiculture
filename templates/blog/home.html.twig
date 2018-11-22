@@ -1,28 +1,73 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Home{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/actualite.css') }}" rel="stylesheet" />
+{% endblock %}
+
 {% block body %}
-    <h1>Bienvenue dans ce blog</h1>
 
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem non deleniti ad vitae temporibus cupiditate distinctio accusamus minima eligendi explicabo? Nesciunt animi consectetur non repellendus esse magni, totam saepe, ab vero numquam repellat modi quis aut iste. Explicabo, voluptate neque!</p>
-    <p>Omnis, ut. Commodi, eveniet corrupti? Ipsum corporis nulla, reiciendis repellendus expedita, fuga vitae laboriosam pariatur ad unde harum repudiandae nostrum sunt quidem veniam, autem dolor voluptatem fugit delectus modi ex itaque cumque maiores suscipit? Et qui ratione culpa officia odit.</p>
+    <header>
+        <h1>Histoire</h1>
 
-    {% set break = false %}
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem non deleniti ad vitae temporibus cupiditate distinctio accusamus minima eligendi explicabo? Nesciunt animi consectetur non repellendus esse magni, totam saepe, ab vero numquam repellat modi quis aut iste. Explicabo, voluptate neque!</p>
+        <p>Omnis, ut. Commodi, eveniet corrupti? Ipsum corporis nulla, reiciendis repellendus expedita, fuga vitae laboriosam pariatur ad unde harum repudiandae nostrum sunt quidem veniam, autem dolor voluptatem fugit delectus modi ex itaque cumque maiores suscipit? Et qui ratione culpa officia odit.</p>
+    </header>
 
-    {% for article in articles.channel.item %}
-        {% if loop.index < 6 %}
-            {% set break = true %}
-        <artcicles>
-            {% if article.enclosure is defined %}
-                <img src="{{article.enclosure.attributes.url }}">
+    <main class="d-flex flex-wrap justify-content-center">
+        <div class="d-flex flex-wrap justify-content-center">
+        {% set break = false %}
+
+        {% for article in articles.channel.item %}
+            {% if loop.index < 6 %}
+                {% set break = true %}
+                {% if loop.index == 1 %}
+                   <artcicles class="premier d-flex flex-row justify-content-center bd-highlight pb-3">
+                        {% if article.enclosure is defined %}
+                            <img class="img-article" src="{{article.enclosure.attributes.url }}">
+                        {% else %}
+                            <img class="img-article" src="images/abeille-article.jpg">
+                        {% endif %}
+                        <div class="article pl-3 pb-5 d-flex flex-column justify-content-between">
+                            <div class="texte">
+                                <p> <span class="titre my-0">{{article.title}}</span><br>
+                                {{article.pubDate}}</p>  
+                                <p class="description">
+                                {{article.description |replace({'<div class="content">': " " ,'</div>':''})}}
+                                </p>
+                            </div>
+                            <a class="btn btn-warning" href="{{article.link}}" target="_blank">Voir plus</a>
+                        </div>
+                        
+                    </artcicles>
+
+                {% else %}
+
+                    <artcicles class="autre deuxieme d-flex flex-row bd-highlight pb-3">
+                        {% if article.enclosure is defined %}
+                            <img class="img-article" src="{{article.enclosure.attributes.url }}">
+                        {% else %}
+                            <img class="img-article" src="images/abeille-article.jpg">
+                        {% endif %}
+                        <div class="article pl-3 pb-5">
+                            <div class="texte">
+                                <p> <span class="titre my-0">{{article.title}}</span><br>
+                                {{article.pubDate}}</p>  
+                                <p class="description">
+                                {{article.description |replace({'<div class="content">': " " ,'</div>':''})}}
+                                </p>
+                            </div>
+                            <a class="btn btn-warning" href="{{article.link}}" target="_blank">Voir plus</a>
+                        </div>
+                        
+                    </artcicles>
+                {% endif %}
             {% endif %}
-            <h2>{{article.title}}</h2>
-            <ul>
-                <li>description: {{article.description|replace({'<div class="content">': " " ,'</div>':''})}}</li>
-                <li>Date Publication: {{article.pubDate}}</li>
-            </ul>    
-            <a class="btn btn-warning" href="{{article.link}}">Voir plus</a><br>
-        </artcicles>
-        {% endif %}
-    {% endfor %}
-
+        {% endfor %}
+        </div>
+       <a class="btn btn-warning" href="{{ path('actualite') }}">Voir tout les articles</a>
+    </main>
+    
 {% endblock %}

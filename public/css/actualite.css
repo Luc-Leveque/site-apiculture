@@ -21,7 +21,7 @@ article {
 	
 }
 
-.description {
+.autre .description {
 	white-space: nowrap; 
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -30,9 +30,36 @@ article {
 
 .titre {
 	font-size: 1.5em;
+	font-family: "beeRidge", lucida sans unicode,lucida grande,sans-serif;
 }
 
 .img-article {
 	width: 150px;
 	height: 150px;
+}
+
+/* ARTICLE HOME */
+
+.premier .img-article {
+	width: 300px;
+	height: 300px;
+}
+
+.premier .texte {
+	height: auto;
+	width: 600px;
+}
+
+.premier .article {
+	min-height: 350px;
+}
+
+.premier {
+	width: 100%;
+
+}
+
+.deuxieme .img-article {
+	width: 200px;
+	height: 200px;
 }
