@@ -1,24 +1,30 @@
-body {
-	text-align: center;
-}
-
 h1{
     color: #ffbe00;
     font-family: "youthTouch", lucida sans unicode,lucida grande,sans-serif;
     font-size: 600%;   
-    justify-content: center;
+    text-align: center;
 }
 
 article {
 	width: 500px;
 }
 
+.article {
+	text-align: left;
+}
+
 .texte {
 	height: 150px;
 	width: 500px;
+	margin: 0; padding: 0;
 	text-align: left;
+	
+}
+
+.description {
+	white-space: nowrap; 
 	overflow: hidden;
-	text-overflow: "...";
+	text-overflow: ellipsis;
 }
 
 
