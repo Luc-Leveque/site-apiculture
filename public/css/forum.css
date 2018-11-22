@@ -2,5 +2,93 @@ h1{
     color: #ffbe00;
     font-family: "youthTouch", lucida sans unicode,lucida grande,sans-serif;
     font-size: 600%;   
+    display: flex;
     justify-content: center;
+    margin-bottom: 0;
+}
+
+.author {
+    flex-direction: row;
+    padding: 2%;
+    border: 0px;
+}
+
+.commentaires{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 4em;
+    margin-top: 0;
+}
+
+.post{
+    margin-top: 1em;
+}
+
+h2{
+    font-size: 1.5em;
+    font-family: "beeRidge", lucida sans unicode,lucida grande,sans-serif;
+    color: #7c7c7d;
+    border: 1px solid #7c7c7d;
+    border-bottom: 0.5px dashed;
+    margin-bottom: 0;
+}
+
+.comment{
+    border: 1px solid #7c7c7d;
+    border-top: 0px; 
+    padding: 1em;
+}
+
+.add-comment{
+    margin: 4em;
+}
+
+.create-topic{
+    margin: 3em;
+    font-family: "beeRidge", lucida sans unicode,lucida grande,sans-serif;
+    font-size: 2em;
+
+}
+
+.list-topic{
+    margin: 4em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.list-topic h2{
+    border: 0px;
+    margin-bottom: 1em;
+    font-size: 2em;
+}
+
+.connect{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    font-size: 1.5rem;
+}
+
+.topic-link{
+    color: #222;
+    font-family: "beeRidge", lucida sans unicode,lucida grande,sans-serif;
+    font-size: 2em;
+    margin-right: 2em;
+    text-decoration: underline;
+}
+
+.topic-link:hover{
+    color: #222;
+}
+
+th{
+  padding-right: 50px;  
+}
+
+.back{
+    margin-left: 0.9em;
+    margin-top: 0.2em;
 }

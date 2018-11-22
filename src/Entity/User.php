@@ -67,12 +67,12 @@ class User implements UserInterface
     private $commentArticles;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Topic", mappedBy="author")
+     * @ORM\OneToMany(targetEntity="App\Entity\Topic", mappedBy="author" , orphanRemoval=true)
      */
     private $topics;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="author")
+     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="author" ,  orphanRemoval=true)
      */
     private $posts;
 

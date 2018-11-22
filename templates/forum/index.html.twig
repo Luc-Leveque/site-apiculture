@@ -1,33 +1,52 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/forum.css') }}" rel="stylesheet" />
+{% endblock %}
+
 {% block body %}
     <h1>Bienvenue sur le forum d'apiculture</h1>
     
     {% if app.user %}
 
-            <a href="{{ path('create_topic') }}" >Créer un topic</a>
+            <a class="btn btn-warning" href="{{ path('create_topic') }}" >Créer un topic</a>
     {% else %}
 
-        <p>Vous ne pouvez pas créer de topic si vous n'êtes pas connecté !</p>
+        <p class="connect">Vous ne pouvez pas créer de topic si vous n'êtes pas connecté !</p>
 
     {% endif %}
     
-    {% for topic in topics %}
-            <artcicles>
-                <ul>
-                    <a href="{{ path('show_topic', {'id': topic.id}) }}" >{{topic.title}}</a><br />
-                    {% if app.user %}
-                        {% if app.user.level == 2  %}
-                        <a href="{{ path('delete_topic', {'id': topic.id}) }}" >Supprimer ce topic</a>
-                        {% elseif app.user.id == topic.author.id %}
-                        <a href="{{ path('delete_topic', {'id': topic.id}) }}" >Supprimer mon topic</a>
-                        {% endif %}
+    <article class="list-topic">
+        <h2>Liste des topics</h2>
+    <table>
+        <tr>
+            <th>Topic</th>
+            <th>Créateur</th>
+            <th>Nb Messages</th>
+            <th>Dernier message</th>
+        </tr>
+        {% for topic in topics %}
+        <tr>
+            <td><a class="topic-link" href="{{ path('show_topic', {'id': topic.id}) }}">
+                {{topic.title}}</a></td>
+            <td><p>{{topic.author.username}}</p></td>
+            <td><p><p>{{ topic.posts| length }}</p></td>
+            <td><p>ici la date du dernier message posté</p></td>
+            <td>
+                {% if app.user %}
+                    {% if app.user.level == 2  %}
+                       <a class="btn btn-warning" href="{{ path('delete_topic', {'id': topic.id}) }}">
+                            Supprimer ce topic</a>
+                    {% elseif app.user.id == topic.author.id %}
+                        <a class="btn btn-warning" href="{{ path('delete_topic', {'id': topic.id}) }}">
+                        Supprimer mon topic</a>
                     {% endif %}
-                </ul>
-            </artcicles>
+                {% endif %}
+            </td>  
+        </tr>
         {% endfor %}
-
-    
-
+    </table>
+    </article>
     
 {% endblock %}

@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/forum.css') }}" rel="stylesheet" />
+{% endblock %}
+
 {% block body %}
 
 
@@ -7,10 +12,11 @@
     {{ form_start(editForm) }}
             {{ form_row(editForm.content, {'attr': {'placeholder': "Votre post"}}) }}
 
-            <button type="submit" class="btn btn-success">Modifier !</button>
+            <button type="submit" class="btn btn-warning">Modifier </button>
 
             {{ form_end(editForm) }}
     
 
+    <a class="back btn btn-warning" href="{{ path('forum')}}">Retour</a>
     
 {% endblock %}
