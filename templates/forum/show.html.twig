@@ -1,68 +1,58 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/forum.css') }}" rel="stylesheet" />
+{% endblock %}
+
 {% block body %}
 
-<div class="col ">
-    <div class="row space-around">
-        <div class="col">
-            <artcicle>
-                <h2>{{topic.title}}</h2>
-                <p>Créer le{{ topic.createdAt | date('d/m/Y') }}
-                    à
-                    {{ topic.createdAt | date('H:i') }}</p>
-                    <p>Par {{topic.author.username}}</p>
-                </div>
 
-            </artcicle>
-        </div>
-    </div>
+    <h1>{{topic.title}}</h1>
+    <h2 class="author">Créer le {{ topic.createdAt | date('d/m/Y') }} à
+        {{ topic.createdAt | date('H:i') }} Par {{topic.author.username}}</h2>
+    
 
 
-    <div class="row justify-content-between align-items-center">
-        <section id="commentaires">
+    <section class="commentaires">
         <p>{{ topic.posts| length }}
-            message sur ce topic :</p>
+            messages sur ce topic :</p>
         {% for post in topic.posts %}
 
-            <div class="comment">
-                <div class="row">
-                    <div class="col-3">
-                        {{ post.author.username}}
-                        (<small>{{ post.createdAt | date('d/m/Y à H:i')}}</small>)
-                    </div>
-                    <div class="col">
-                        {{ post.content | raw}}
-                    </div>
-                </div>
-            </div>
+            <div class="post">   
+                <h2>{{ post.author.username}}
+                    <small>({{ post.createdAt | date('d/m/Y à H:i')}})</small> : </h2>
+                <p class="comment">{{ post.content | raw}}</p>
+           
             {% if app.user %}
-                        {% if app.user.level == 2  %}
-                        <a href="{{ path('delete_post', {'id': post.id ,'topic': topic.id}) }}" >Supprimer ce post</a>
-                        {% elseif app.user.id == post.author.id %}
-                        <a href="{{ path('delete_post', {'id': post.id ,'topic': topic.id}) }}" >Supprimer mon post</a>
-                        {% endif %}
-                    {% endif %}
-
+                {% if app.user.level == 2  %}
+                    <a class="btn btn-warning" href="{{ path('delete_post', {'id': post.id ,'topic': topic.id}) }}">
+                    Supprimer ce post</a>
+                {% elseif app.user.id == post.author.id %}
+                    <a class="btn btn-warning" href="{{ path('delete_post', {'id': post.id ,'topic': topic.id}) }}">
+                    Supprimer mon post</a>
+                {% endif %}
+            {% endif %}
+             </div>
         {% endfor %}
+        </section>
 
+    <div class="space-around">
         {% if app.user %}
 
             {{ form_start(formPost) }}
             {{ form_row(formPost.content, {'attr': {'placeholder': "Votre post"}}) }}
 
-            <button type="submit" class="btn btn-success">Poster !</button>
+            <button type="submit" class="btn btn-warning">Poster</button>
 
             {{ form_end(formPost) }}
 
         {% else %}
-            <p>Vous ne pouvez pas posté si vous n'êtes pas connecté</p>
-            <a href="{{ path('security_login')}}" class="btn btn-primary">Connexion</a>
+
+            <p>Vous ne pouvez pas poster si vous n'êtes pas connecté</p>
+            <a href="{{ path('security_login')}}" class="btn btn-warning">Connexion</a>
         {% endif %}
-        </section>
     </div>
-    <div class="row space-around">
-        <a class="btn btn-info" href="{{ path('forum')}}">Retour</a>
-    </div>
-</div>
+    <a class="back btn btn-warning" href="{{ path('forum')}}">Retour</a>
 
 {% endblock %}
