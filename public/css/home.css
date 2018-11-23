@@ -1,11 +1,15 @@
-header {
+.header-histoire {
 	width: 100%;
+	min-height: calc(100vh - 70px);
 	background-image: url('../images/image-histoire.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center; 
-	padding: 5% 10%;
+	padding: 0% 10%;
 	margin-bottom: 2%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 h1{

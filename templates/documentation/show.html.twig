@@ -6,42 +6,42 @@
 {% endblock %}
 
 {% block body %}
-<div class="col-sm">
-    <div class="row justify-content-center">
+<div class="d-flex flex-column mt-3">
+    <div class="d-flex flex-row justify-content-center">
         <h2>{{ article.title }}</h2>
     </div>
-    <div class="row justify-content-center">
+    <div class="d-flex flex-row justify-content-center">
     <p></p>
     </div>
-    <div class="row justify-content-between">
-        <div class="col text-justify">
+    <div class="article d-flex flex-row justify-content-between">
+        <div class="d-flex flex-col text-justify mx-2">
            <span> {{ article.content }}</span>
         </div>
-        <div class="col justify-content-end">
+        <div class="d-flex flex-col justify-content-end mx-2">
             <img id="articleImage"class="img-responsive rounded" src="{{ article.image }}" alt="{{ article.title }}" >
         </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="d-flex flex-row justify-content-center">
         <p></p>
     </div>
 
     {% if app.user %}
         {% if  app.user.level == 2 %}
-        <div class="row justify-content-center">
+        <div class="d-flex flex-row justify-content-center">
             <a class="btn btn-warning" href="{{ path('blog_edit', {'id': article.id} )}}">Modifier</a>
         </div>
         {% endif %}
     {% endif %}
 
-    <div class="row justify-content-center">
+    <div class="d-flex flex-row justify-content-center">
         <p></p>
     </div>
-    <div class="row justify-content-center">
+    <div class="d-flex flex-row justify-content-center">
         <p></p>
     </div>
 
     {% block return_button %}
-    <div class="row justify-content-start">
+    <div class="d-flex flex-row justify-content-start">
         <a class="btn btn-warning" href="{{ path('home')}}">Retour</a>
     </div>
     {% endblock %}

@@ -10,11 +10,13 @@
 
 {% block body %}
 
-    <header>
-        <h1>Histoire</h1>
+    <header class="header-histoire">
+        <div>
+            <h1>Histoire de l'apiculture</h1>
 
-        <p class="histoire">La récolte et la consommation de miel, à distinguer de l'apiculture proprement dite, remontent à la préhistoire. Les peintures rupestres représentant des scènes de cueillette de miel montrent l'utilisation d'échelles et de l'enfumage. À cette époque, l'homme recueille le miel souvent en détruisant la colonie. L'apiculture est courante dans le Haut-Empire égyptien du xxive siècle av. J.-C.. Des modèles de ruches en planches sont courants dans l'Antiquité, ainsi que des ruches tressées, et en céramique : elles sont d'abord faites de baguettes de bois entrecroisées, étanchées avec un mélange de bouse de vache et de cendres. Les ruches en paille tressée, plus tardives, sont mentionnées pour la première fois dans une ordonnance de Charlemagne, datée de 799, le Capitulaire De Villis. En Europe, l'exploitation intensive du miel date de la fin du xviiie siècle avec l'invention de la hausse qui permet de rendre la récolte de miel plus productive, et c'est à partir de ce moment que l'on peut commencer à parler d'élevage. L'avènement de l'apiculture moderne se fait par l'invention du cadre mobile, mis au point en 1844, par le Dr Charles Paix Debeauvoys.</p>
-        <a class="btn btn-dark" href="{{ path('documentation_history') }}" target="_blank">Voir plus</a>
+            <p class="histoire">La récolte et la consommation de miel, à distinguer de l'apiculture proprement dite, remontent à la préhistoire. Les peintures rupestres représentant des scènes de cueillette de miel montrent l'utilisation d'échelles et de l'enfumage. À cette époque, l'homme recueille le miel souvent en détruisant la colonie. L'apiculture est courante dans le Haut-Empire égyptien du xxive siècle av. J.-C.. Des modèles de ruches en planches sont courants dans l'Antiquité, ainsi que des ruches tressées, et en céramique : elles sont d'abord faites de baguettes de bois entrecroisées, étanchées avec un mélange de bouse de vache et de cendres. Les ruches en paille tressée, plus tardives, sont mentionnées pour la première fois dans une ordonnance de Charlemagne, datée de 799, le Capitulaire De Villis. En Europe, l'exploitation intensive du miel date de la fin du xviiie siècle avec l'invention de la hausse qui permet de rendre la récolte de miel plus productive, et c'est à partir de ce moment que l'on peut commencer à parler d'élevage. L'avènement de l'apiculture moderne se fait par l'invention du cadre mobile, mis au point en 1844, par le Dr Charles Paix Debeauvoys.</p>
+            <a class="btn btn-dark" href="{{ path('documentation_history') }}">Voir plus</a>
+        </div>
     </header>
 
     <section class="d-flex flex-wrap justify-content-center">
@@ -42,7 +44,7 @@
                                 {{article.description |replace({'<div class="content">': " " ,'</div>':''})}}
                                 </p>
                             </div>
-                            <a class="btn btn-warning" href="{{article.link}}" target="_blank">Voir plus</a>
+                            <a class="btn btn-warning" href="{{article.link}}">Voir plus</a>
                         </div>
                         
                     </artcicles>
