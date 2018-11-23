@@ -1,0 +1,29 @@
+header {
+	width: 100%;
+	background-image: url('../images/image-histoire.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center; 
+	padding: 5% 10%;
+	margin-bottom: 2%;
+}
+
+h1{
+    color: #000;
+    text-align: left;
+}
+
+h2 {
+	color: #ffbe00;
+    font-family: "youthTouch", lucida sans unicode,lucida grande,sans-serif;
+    font-size: 4em;   
+    text-align: center;
+}
+
+.histoire {
+	width: 50%;
+}
+
+body {
+	height: auto;
+}

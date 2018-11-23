@@ -18,14 +18,23 @@
 }
 
 .navbarTop{
-    font-size: 140%;    
+    font-size: 140%;
+    height: 65px;    
+}
+
+.navbarBottom{
+    height: 65px;    
 }
 
 body {
     background-image: url('../images/background.jpg');
     background-color: transparent;
     background-repeat: repeat;
-    padding-top: 65px;
-    padding-bottom: 95px;
 
+}
+
+main {
+    min-height: calc(100vh - 70px);
+    padding-top: 65px;
+    padding-bottom: 5px;
 }

@@ -67,12 +67,13 @@
                 </ul>
             </div>
         </nav>
+        <main>
         <div class="container-fluid">
             {% block body %}{% endblock %}
         </div>
-
+    </main>
         <div>
-        <nav class="navbarBottom navbar fixed-bottom navbar-expand-lg navbar-light bg-light">
+        <nav class="navbarBottom navbar navbar-expand-lg navbar-light bg-light">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('terms') }}">Conditions d'utilisation</a>

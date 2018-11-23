@@ -5,6 +5,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link href="{{ asset('css/actualite.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/home.css') }}" rel="stylesheet" />
 {% endblock %}
 
 {% block body %}
@@ -12,11 +13,14 @@
     <header>
         <h1>Histoire</h1>
 
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem non deleniti ad vitae temporibus cupiditate distinctio accusamus minima eligendi explicabo? Nesciunt animi consectetur non repellendus esse magni, totam saepe, ab vero numquam repellat modi quis aut iste. Explicabo, voluptate neque!</p>
-        <p>Omnis, ut. Commodi, eveniet corrupti? Ipsum corporis nulla, reiciendis repellendus expedita, fuga vitae laboriosam pariatur ad unde harum repudiandae nostrum sunt quidem veniam, autem dolor voluptatem fugit delectus modi ex itaque cumque maiores suscipit? Et qui ratione culpa officia odit.</p>
+        <p class="histoire">La récolte et la consommation de miel, à distinguer de l'apiculture proprement dite, remontent à la préhistoire. Les peintures rupestres représentant des scènes de cueillette de miel montrent l'utilisation d'échelles et de l'enfumage. À cette époque, l'homme recueille le miel souvent en détruisant la colonie. L'apiculture est courante dans le Haut-Empire égyptien du xxive siècle av. J.-C.. Des modèles de ruches en planches sont courants dans l'Antiquité, ainsi que des ruches tressées, et en céramique : elles sont d'abord faites de baguettes de bois entrecroisées, étanchées avec un mélange de bouse de vache et de cendres. Les ruches en paille tressée, plus tardives, sont mentionnées pour la première fois dans une ordonnance de Charlemagne, datée de 799, le Capitulaire De Villis. En Europe, l'exploitation intensive du miel date de la fin du xviiie siècle avec l'invention de la hausse qui permet de rendre la récolte de miel plus productive, et c'est à partir de ce moment que l'on peut commencer à parler d'élevage. L'avènement de l'apiculture moderne se fait par l'invention du cadre mobile, mis au point en 1844, par le Dr Charles Paix Debeauvoys.</p>
+        <a class="btn btn-dark" href="{{ path('documentation_history') }}" target="_blank">Voir plus</a>
     </header>
 
-    <main class="d-flex flex-wrap justify-content-center">
+    <section class="d-flex flex-wrap justify-content-center">
+
+        <h2>Actualités</h2>
+
         <div class="d-flex flex-wrap justify-content-center">
         {% set break = false %}
 
@@ -68,6 +72,6 @@
         {% endfor %}
         </div>
        <a class="btn btn-warning" href="{{ path('actualite') }}">Voir tout les articles</a>
-    </main>
+    </section>
     
 {% endblock %}
